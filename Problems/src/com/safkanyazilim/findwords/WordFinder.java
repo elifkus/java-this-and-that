@@ -38,7 +38,10 @@ public class WordFinder {
 	}
 	
 	public static int countWordsInText3(String text, String word) {
-		return 0;
+		Trie root = new Trie();
+		root.init(text);
+		
+		return root.getCount(word);
 	}
 	
 }
