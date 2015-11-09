@@ -9,30 +9,19 @@ import java.util.Scanner;
  *
  */
 public class Solution {
-	public static void main(String[] args) {
+public static void main(String[] args) {
 		
-		String[] inputArray = readInput();
+	try (Scanner scanner = new Scanner(System.in)) { 
+		int numberOfTestCases = scanner.nextInt();
 		
-		
-	}
-	
-	private static String[] readInput() {
-		int numberOfTestCases;
-		String[] inputArray;
-		
-		try (Scanner scanner = new Scanner(System.in)) { 
-			numberOfTestCases = scanner.nextInt();
-			inputArray = new String[numberOfTestCases];
-			
-			for(int i=0; i<inputArray.length; i++) {
-				inputArray[i] = scanner.next();
-			}
+		for(int i=0; i<numberOfTestCases; i++) {
+			String str1 = scanner.next();
+			String str2 = scanner.next();
 		}
-		
-		return inputArray;
 	}
-
-	
-	
+		
+		
+		
+	}	
 
 }
