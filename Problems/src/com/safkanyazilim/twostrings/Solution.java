@@ -54,5 +54,27 @@ public class Solution {
 		return success;
 	}
 	
+	public static boolean findCommonLetterFaster(String str1, String str2) {
+		
+		if (str1 == null || str2 == null || str1.length() < 1 || str2.length() < 1) {
+			return false;
+		}
+		
+		char[] charArray = new char[26];
+		
+		char[] str1Arr = str1.toCharArray();
+		
+		for(int i=0;i<str1Arr.length;i++){
+			charArray[str1Arr[i] - 'a'] += 1; 
+		}
+		
+		for (int i=0;i<str2.length();i++) {
+			if (charArray[str2.charAt(i) - 'a'] > 0) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 
 }
