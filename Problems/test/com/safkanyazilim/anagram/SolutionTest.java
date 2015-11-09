@@ -89,5 +89,42 @@ public class SolutionTest {
 		System.out.println("Total time elapsed 2: "+ String.valueOf(elapsedTime));
 		
 	}
+	
+	@Test
+	public void testfindDifferenceToMakeAnagramEvenFaster() {
+		String item = "aabbabab";
+		int expected = 0;
+		
+		assertEquals(expected, Solution.findDifferenceToMakeAnagramEvenFaster(item));
+	}
+
+	@Test
+	public void testSpeedForFindDifferenceToMakeAnagramEvenFaster() {
+		String[] items = {"aabbabab",
+						  "aba",
+						  "sdasdfasdf",
+						  "yhohksdf",
+						  "hjhjhhjj",
+						  "asdfafff",
+						  "ijkjkkkk",
+						  "asdffdsa",
+						  "akkaakka",
+						  "kitapcinin"};
+		
+		long start = System.currentTimeMillis();
+		
+		for(int j=0; j<1000000; j++) {
+			for (int i = 0; i<10; i++) {
+				Solution.findDifferenceToMakeAnagramEvenFaster(items[i]);
+			}
+		}
+		
+		long end = System.currentTimeMillis();
+		
+		long elapsedTime = end-start;
+		
+		System.out.println("Total time elapsed 3: "+ String.valueOf(elapsedTime));
+		
+	}
 
 }

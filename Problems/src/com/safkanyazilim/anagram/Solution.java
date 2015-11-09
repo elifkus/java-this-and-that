@@ -93,4 +93,29 @@ public class Solution {
 		return diffCount / 2;
 	}
 	
+	public static int findDifferenceToMakeAnagramEvenFaster(String concatenatedString) {
+		if ((concatenatedString == null) || (( concatenatedString.length() % 2) != 0)) {
+			return -1;
+		}
+		
+		int half = concatenatedString.length() / 2;
+		char[] stringCharArray = concatenatedString.toCharArray();
+		int charTypeNumber = 26;
+		
+		int[] charCount = new int[charTypeNumber];
+		
+		for(int i=0; i<half; i++) {
+			charCount[stringCharArray[i] - 'a'] += 1;
+			charCount[stringCharArray[half + i] - 'a'] -= 1;
+			
+		}
+		
+		int diffCount = 0;
+		
+		for(int i=0; i<charTypeNumber; i++) {
+			diffCount += Math.abs(charCount[i]);
+		}
+		
+		return diffCount;
+	}
 }
