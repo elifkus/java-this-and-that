@@ -101,5 +101,53 @@ public class SolutionTest {
 		System.out.println("Total time elapsed 2: "+ String.valueOf(elapsedTime));
 		
 	}
+	
+	@Test
+	public void testFindCommonLetterEvenFaster() {
+		String item1 = "aabbabab";
+		String item2 = "xysdfa";
+		boolean expected = true;
+		
+		assertEquals(expected, Solution.findCommonLetterEvenFaster(item1, item2));
+	}
+
+	@Test
+	public void testSpeedForFindCommonLetterEvenFaster() {
+		String[] items = {"aabbabab",
+						  "aba",
+						  "sdasdfasdf",
+						  "yhohksdf",
+						  "hjhjhhjj",
+						  "asdfafff",
+						  "ijkjkkkk",
+						  "asdffdsa",
+						  "akkaakka",
+						  "kitapcinin",
+						  "aabbcbab",
+						  "aba",
+						  "sdasddasds",
+						  "yjohmsdf",
+						  "hjljhljj",
+						  "asdfaaff",
+						  "ijkjkakk",
+						  "aslfflsa",
+						  "fknafkna",
+						  "kitaplinin"};
+		
+		long start = System.currentTimeMillis();
+		
+		for(int j=0; j<1000000; j++) {
+			for (int i = 0; i<10; i=i+2) {
+				Solution.findCommonLetterFaster(items[i], items[i+1]);
+			}
+		}
+		
+		long end = System.currentTimeMillis();
+		
+		long elapsedTime = end-start;
+		
+		System.out.println("Total time elapsed 3: "+ String.valueOf(elapsedTime));
+		
+	}
 
 }

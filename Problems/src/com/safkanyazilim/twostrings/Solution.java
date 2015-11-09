@@ -60,7 +60,7 @@ public class Solution {
 			return false;
 		}
 		
-		char[] charArray = new char[26];
+		int[] charArray = new int[26];
 		
 		char[] str1Arr = str1.toCharArray();
 		
@@ -77,4 +77,26 @@ public class Solution {
 		return false;
 	}
 
+public static boolean findCommonLetterEvenFaster(String str1, String str2) {
+		
+		if (str1 == null || str2 == null || str1.length() < 1 || str2.length() < 1) {
+			return false;
+		}
+		
+		boolean[] charArray = new boolean[26];
+		
+		char[] str1Arr = str1.toCharArray();
+		
+		for(int i=0;i<str1Arr.length;i++){
+			charArray[str1Arr[i] - 'a'] = true; 
+		}
+		
+		for (int i=0;i<str2.length();i++) {
+			if (charArray[str2.charAt(i) - 'a']) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 }
