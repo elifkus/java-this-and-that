@@ -3,7 +3,7 @@ package com.safkanyazilim.sample;
 import java.util.Scanner;
 
 /**
- * Solution for https://www.hackerrank.com/challenges/anagram
+ * Solution for <insert problem url>
  * @author elif
  *
  */
