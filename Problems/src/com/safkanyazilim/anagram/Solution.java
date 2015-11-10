@@ -85,9 +85,7 @@ public class Solution {
 		int diffCount = 0;
 		
 		for(int i=0; i<charTypeNumber; i++) {
-			if (firstCharsCount[i] != secondCharsCount[i]) {
-				diffCount++;
-			}
+			diffCount += Math.abs(firstCharsCount[i] - secondCharsCount[i]);
 		}
 		
 		return diffCount / 2;
