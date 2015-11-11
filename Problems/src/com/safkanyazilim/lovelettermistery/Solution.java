@@ -26,5 +26,26 @@ public class Solution {
 		}
 		
 	}	
+	
+	public static int findDifferenceForPalindrome(String str){
+		int changes = 0;
+		
+		for (int i=0; i<(str.length()/2); i++) {
+			changes+= Math.abs(str.charAt(i)-str.charAt(str.length()-1-i));
+		}
+		
+		return changes;
+	}
+
+	public static int findDifferenceForPalindromeFaster(String str){
+		int changes = 0;
+		
+	
+		for (int i = 0, j = str.length() - 1; i < j; i++, j--) {
+			changes+= Math.abs(str.charAt(i)-str.charAt(j));
+		}
+		
+		return changes;
+	}
 
 }
