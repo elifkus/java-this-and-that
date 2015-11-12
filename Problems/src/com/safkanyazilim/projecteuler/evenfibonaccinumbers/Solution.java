@@ -1,6 +1,7 @@
 package com.safkanyazilim.projecteuler.evenfibonaccinumbers;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -33,14 +34,19 @@ public class Solution {
          BigInteger second = new BigInteger("2");
          BigInteger evenSum = BigInteger.ZERO;
          BigInteger swap = BigInteger.ZERO;
+         
+         boolean[] evenOrOdd = {true, false, false};
+         int counter = 0;
+         
          while (second.compareTo(number) <= 0) {
-             if (second.mod(new BigInteger("2")).compareTo(BigInteger.ZERO) == 0) {
+             if (evenOrOdd[(counter % 3)]) {
                  evenSum = evenSum.add(second);
              }
-             swap = new BigInteger(second.toString());
+             swap = second;
              second = second.add(first);
-             first = new BigInteger(swap.toString());
+             first = swap;
              
+             counter++;
             
          }
          
