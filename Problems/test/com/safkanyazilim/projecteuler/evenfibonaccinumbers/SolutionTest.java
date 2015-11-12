@@ -58,6 +58,17 @@ public class SolutionTest {
 		
 	}
 	
-	
+	@Test
+	public void testFindSumOfEvenTermsFaster() {
+		String item1 = "10";
+		String expected = "10";
+		
+		assertEquals(expected, Solution.findSumOfEvenTermsFaster(item1));
+		
+		item1 = "100";
+		expected = "44";
+		assertEquals(expected, Solution.findSumOfEvenTermsFaster(item1));
+		
+	}
 
 }

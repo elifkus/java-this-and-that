@@ -52,5 +52,35 @@ public class Solution {
          
          return evenSum.toString();
 	}
+	
+	public static String findSumOfEvenTermsFaster(String n) {
+		BigInteger number = new BigInteger(n);
+        
+        BigInteger first = new BigInteger("2");
+        BigInteger second = new BigInteger("8");
+        
+        if (number.compareTo(new BigInteger("7")) <= 0) {
+        	return first.toString();
+        }
+        
+        if (number.compareTo(new BigInteger("33")) <= 0) {
+        	return first.add(second).toString();
+        }
+        
+        BigInteger sum = second.add(first);
+        BigInteger swap;
+        BigInteger previousSum = BigInteger.ZERO;
+        
+        while (sum.compareTo(number) <= 0) {
+        	
+        	previousSum = sum;
+        	swap = second;
+        	second = second.multiply(new BigInteger("4")).add(first);
+            first = swap;
+            sum = sum.add(second);
+        }
+        
+        return previousSum.toString();
+	}
 
 }
