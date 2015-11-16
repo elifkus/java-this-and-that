@@ -14,6 +14,13 @@ public class SolutionTest {
 		int expected = 3;
 		
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslands(item1, noOfIslands));
+	
+		item1 = "aaababaababababbabaabaabaaaababaababaabbabaababaaa";
+		noOfIslands = 1;
+		expected = 946;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslands(item1, noOfIslands));
+		
+	
 	}
 
 	@Test
