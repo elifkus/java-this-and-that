@@ -13,13 +13,12 @@ public class Solution {
 			
 		try (Scanner scanner = new Scanner(System.in)) { 
 			
-				String str1 = scanner.next();
-				int noOfIslands = scanner.nextInt();
-			
-				int result = findNoOfSubstringsThatMakeNIslands(str1, noOfIslands);
-				System.out.println(result);
-			
-	
+			String str1 = scanner.next();
+			int noOfIslands = scanner.nextInt();
+		
+			int result = findNoOfSubstringsThatMakeNIslands(str1, noOfIslands);
+			System.out.println(result);
+		
 		}		
 		
 	}	
