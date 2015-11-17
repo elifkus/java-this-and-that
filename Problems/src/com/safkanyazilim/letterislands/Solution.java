@@ -25,7 +25,7 @@ public class Solution {
 	
 	public static int findNoOfSubstringsThatMakeNIslands(String str, int n) {
 		
-		int lengthToCheck = (str.length() % 2 != 0) ? (str.length()/2) : (str.length()/2 - 1);
+		int lengthToCheck = str.length();
 		int satisfyingSubstring  = 0;
 		
 		HashSet<String> set = new HashSet<String>();
