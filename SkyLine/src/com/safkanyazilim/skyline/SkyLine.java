@@ -19,28 +19,13 @@ public class SkyLine {
 		return heights;
 	}
 
-	private class Height {
-		private int startIndex;
-		private int length;
+	public List<Integer> getHeightIndices() {
+		ArrayList<Integer> list = new ArrayList<>();
 		
-		public Height(int startIndex, int length) {
-			this.startIndex=startIndex;
-			this.length=length;
-		}
+		this.heights.forEach((item) -> {  list.add(item.getStartIndex()); });
 		
+		return list;
 		
-		public int getStartIndex() {
-			return startIndex;
-		}
-		public void setStartIndex(int startIndex) {
-			this.startIndex = startIndex;
-		}
-		public int getLength() {
-			return length;
-		}
-		public void setLength(int length) {
-			this.length = length;
-		}
 	}
 }
 
