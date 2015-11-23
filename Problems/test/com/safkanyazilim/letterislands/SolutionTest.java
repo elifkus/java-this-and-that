@@ -9,12 +9,15 @@ public class SolutionTest {
 	@Test
 	public void testFindNoOfSubstringsThatMakeNIslands() {
 		String item1 = "abaab";
-		int noOfIslands = 2;
-		
+		int noOfIslands = 2;	
 		int expected = 3;
-		
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslands(item1, noOfIslands));
 	
+		item1 = "ababa";
+		noOfIslands = 2;
+		expected = 1;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslands(item1, noOfIslands));
+		
 		item1 = "aaababaababababbabaabaabaaaababaababaabbabaababaaa";
 		noOfIslands = 1;
 		expected = 946;
@@ -23,10 +26,10 @@ public class SolutionTest {
 		item1 = "aaaabababbaabaaabababbababaabaababaababaabaababaaa";
 		noOfIslands = 3;
 		expected = 5;
-		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslands(item1, noOfIslands));
-		
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslands(item1, noOfIslands));	
 	}
-
+	
+	
 	@Test
 	public void testSpeedForFindCommonLetter() {
 		String[] items = {"aabbabab",

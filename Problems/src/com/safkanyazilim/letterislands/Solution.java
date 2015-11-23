@@ -54,25 +54,31 @@ public class Solution {
 		return satisfyingSubstring;
 	}
 	
-	private static boolean checkIfSubstringMakesNIslands(String str, String sub, int n) {
+	public static boolean checkIfSubstringMakesNIslands(String str, String sub, int n) {
 		int countOfIsland = 0;
 		boolean inIslandFlag = false;
-		
+		int lastInIslandIndex = 0;
 		for(int i=0; i<str.length()-sub.length() + 1; i++) {
 			if (sub.equals(str.substring(i,i+sub.length()))) {
-				i = i+sub.length()-1;
-				
+
 				if (!inIslandFlag) {
+					//System.out.println(i);
 					countOfIsland++;
+					
 				}
 				
+				lastInIslandIndex = i+sub.length()-1;
 				inIslandFlag = true;
-			} else {
+			} else if (i > lastInIslandIndex){
 				inIslandFlag = false;
 			}
 		}
 		
-		
+		/*
+		if (countOfIsland == n) {
+			System.out.println(sub);
+		}
+		*/
 		return countOfIsland == n;
 	}
 
