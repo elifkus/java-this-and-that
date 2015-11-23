@@ -38,7 +38,7 @@ public class Solution {
 				String sub = str.substring(index, index + lengthToCheck);
 				
 				if (!set.contains(sub)) {
-					if (checkIfSubstringMakesNIslands(str, sub, n)) {
+					if (checkIfSubstringMakesNIslandsFaster(str, sub, n)) {
 						satisfyingSubstring++;
 					};
 					set.add(sub);
@@ -58,6 +58,7 @@ public class Solution {
 		int countOfIsland = 0;
 		boolean inIslandFlag = false;
 		int lastInIslandIndex = 0;
+		
 		for(int i=0; i<str.length()-sub.length() + 1; i++) {
 			if (sub.equals(str.substring(i,i+sub.length()))) {
 
@@ -77,12 +78,60 @@ public class Solution {
 			}
 		}
 		
-		/*
+		
 		if (countOfIsland == n) {
 			System.out.println(sub);
 		}
-		*/
+		
 		return countOfIsland == n;
+	}
+	
+	public static boolean checkIfSubstringMakesNIslandsFaster(String str, String sub, int n) {
+		int subIndex = 0;
+		int index = 0;
+		boolean[] marker = new boolean[str.length()];
+		int count = 0;
+		
+		while (count <= n && index <= str.length()-1) {
+			if (str.charAt(index) ==  sub.charAt(subIndex) ) {
+				
+				subIndex++;
+			} else if (subIndex > 0) {
+				index = index - subIndex + 1;
+				subIndex = 0;
+				
+				if (str.charAt(index) ==  sub.charAt(subIndex) ) {
+					subIndex++;
+				}
+			
+			}
+			
+			if (subIndex == sub.length()) {
+				subIndex = 0;
+				int startIndex = index-sub.length()+1;
+				
+				for (int i=startIndex; i<=index; i++) {
+					marker[i] = true;
+				} 
+				
+				if (startIndex-1<0 || !marker[startIndex-1]) {
+					count++;
+				}
+				
+				index = startIndex;
+				
+			} 
+			
+			index++;
+		}
+		
+		
+		
+		/*if (count == n) {
+			System.out.println(sub);
+		}*/
+		
+		return count == n;
 	}
 
 }

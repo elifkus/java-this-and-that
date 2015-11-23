@@ -28,6 +28,16 @@ public class SolutionTest {
 		expected = 5;
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslands(item1, noOfIslands));	
 	}
+
+
+	@Test
+	public void testCheckIfSubstringMakesNIslands() {	
+		String item1 = "aaababaababababbabaabaabaaaababaababaabbabaababaaa";
+		String sub = "aaab";
+		int noOfIslands = 2;
+		boolean expected = true;
+		assertEquals(expected, Solution.checkIfSubstringMakesNIslandsFaster(item1, sub, noOfIslands));
+	}
 	
 	
 	@Test
