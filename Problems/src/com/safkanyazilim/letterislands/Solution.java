@@ -65,6 +65,9 @@ public class Solution {
 					//System.out.println(i);
 					countOfIsland++;
 					
+					if (countOfIsland > n) {
+						break;
+					}
 				}
 				
 				lastInIslandIndex = i+sub.length()-1;
