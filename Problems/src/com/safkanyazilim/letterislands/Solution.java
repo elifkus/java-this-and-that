@@ -1,7 +1,13 @@
 package com.safkanyazilim.letterislands;
 
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
+import java.util.zip.CRC32;
 
 /**
  * Solution for https://www.hackerrank.com/challenges/letter-islands
@@ -16,7 +22,7 @@ public class Solution {
 			String str1 = scanner.next();
 			int noOfIslands = scanner.nextInt();
 		
-			int result = findNoOfSubstringsThatMakeNIslands(str1, noOfIslands);
+			int result = findNoOfSubstringsThatMakeNIslandsFaster(str1, noOfIslands);
 			System.out.println(result);
 		
 		}		
@@ -25,35 +31,72 @@ public class Solution {
 	
 	public static int findNoOfSubstringsThatMakeNIslands(String str, int n) {
 		
-		int lengthToCheck = str.length() / n;
-		int satisfyingSubstring  = 0;
+		int satisfyingSubstringCount  = 0;
 		
 		HashSet<String> set = new HashSet<String>();
 		
-		while (lengthToCheck > 0) {
+		for (int lengthToCheck = str.length() / n; lengthToCheck > 0; lengthToCheck--) {
 			
-			int index = 0;
-			
-			while (index < str.length() - lengthToCheck + 1) {
-				String sub = str.substring(index, index + lengthToCheck);
+			for (int index = 0; index < str.length() - lengthToCheck + 1; index++) {
+
+				String substring = str.substring(index, index + lengthToCheck);
 				
-				if (!set.contains(sub)) {
-					if (checkIfSubstringMakesNIslandsFaster(str, sub, n)) {
-						satisfyingSubstring++;
-					};
-					set.add(sub);
+				
+				if (!set.contains(substring)) {
+					
+					if (checkIfSubstringMakesNIslands(str, substring, n)) {
+						satisfyingSubstringCount++;
+					}
+					
+					set.add(substring);
 				}
 				
-				index++;
+			}
+			
+		}
+		
+		return satisfyingSubstringCount;
+	}
+	
+public static int findNoOfSubstringsThatMakeNIslandsFaster(String str, int n) {
+		
+		
+		int satisfyingSubstring  = 0;
+		
+		HashSet<Long> set = new HashSet<Long>();
+		char[] charArray = str.toCharArray();
+		
+		for (int lengthToCheck = str.length() / n; lengthToCheck > 0; lengthToCheck--) {
+			
+			for (int index = 0; index < str.length() - lengthToCheck + 1; index++) {
+				Long hash = calculateHash(charArray, index, lengthToCheck);
+				
+				if (!set.contains(hash)) {
+					if (checkIfSubstringMakesNIslandsFaster(charArray, index, lengthToCheck, n)) {
+						satisfyingSubstring++;
+					}
+					set.add(hash);
+				}
+				
 			}
 			
 			
-			lengthToCheck--;
 		}
 		
 		return satisfyingSubstring;
 	}
-	
+
+	public static long calculateHash(char[] arr, int startIndex, int length) {
+		
+		ByteBuffer bb = StandardCharsets.US_ASCII.encode(CharBuffer.wrap(arr, startIndex, length));
+		byte[] b = new byte[bb.remaining()];
+		bb.get(b);
+		
+		CRC32 crc = new CRC32();
+	    crc.update(b);
+	    return crc.getValue();
+	}
+
 	public static boolean checkIfSubstringMakesNIslands(String str, String sub, int n) {
 		int countOfIsland = 0;
 		boolean inIslandFlag = false;
@@ -79,46 +122,42 @@ public class Solution {
 		}
 		
 		
-		if (countOfIsland == n) {
-			System.out.println(sub);
-		}
-		
 		return countOfIsland == n;
 	}
 	
-	public static boolean checkIfSubstringMakesNIslandsFaster(String str, String sub, int n) {
-		int subIndex = 0;
+	public static boolean checkIfSubstringMakesNIslandsFaster(char[] arr, int startIndex, int length, int n) {
+		int subIndex = startIndex;
 		int index = 0;
-		boolean[] marker = new boolean[str.length()];
+		boolean[] marker = new boolean[arr.length];
 		int count = 0;
 		
-		while (count <= n && index <= str.length()-1) {
-			if (str.charAt(index) ==  sub.charAt(subIndex) ) {
+		while (count <= n && index <= arr.length-1) {
+			if (arr[index] ==  arr[subIndex] ) {
 				
 				subIndex++;
-			} else if (subIndex > 0) {
-				index = index - subIndex + 1;
-				subIndex = 0;
+			} else if (subIndex > startIndex) {
+				index = index - (subIndex - startIndex - 1);
+				subIndex = startIndex;
 				
-				if (str.charAt(index) ==  sub.charAt(subIndex) ) {
+				if (arr[index] ==  arr[subIndex]) {
 					subIndex++;
 				}
 			
 			}
 			
-			if (subIndex == sub.length()) {
-				subIndex = 0;
-				int startIndex = index-sub.length()+1;
+			if (subIndex == startIndex + length) {
+				subIndex = startIndex;
+				int markerStartIndex = index - length + 1;
 				
-				for (int i=startIndex; i<=index; i++) {
+				for (int i=markerStartIndex; i<=index; i++) {
 					marker[i] = true;
 				} 
 				
-				if (startIndex-1<0 || !marker[startIndex-1]) {
+				if (markerStartIndex-1<0 || !marker[markerStartIndex-1]) {
 					count++;
 				}
 				
-				index = startIndex;
+				index = markerStartIndex;
 				
 			} 
 			
@@ -126,10 +165,6 @@ public class Solution {
 		}
 		
 		
-		
-		/*if (count == n) {
-			System.out.println(sub);
-		}*/
 		
 		return count == n;
 	}
