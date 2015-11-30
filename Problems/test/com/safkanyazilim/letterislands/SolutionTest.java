@@ -42,7 +42,7 @@ public class SolutionTest {
 		
 	}
 
-	@Test
+	//@Test
 	public void testString5() {
 		long start = System.currentTimeMillis();
 
@@ -89,7 +89,7 @@ public class SolutionTest {
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsFaster(item1, noOfIslands));
 	}
 
-	@Test
+	//@Test
 	public void testString5Faster() {
 		long start = System.currentTimeMillis();
 
@@ -104,9 +104,9 @@ public class SolutionTest {
 
 	@Test
 	public void testCheckIfSubstringMakesNIslands() {	
-		String item1 = "aaababaababababbabaabaabaaaababaababaabbabaababaaa";
+		String item1 = "aaaabababbaabaaabababbababaabaababaababaabaababaaa";
 		String sub = "aaab";
-		int noOfIslands = 3;
+		int noOfIslands = 2;
 		boolean expected = true;
 		assertEquals(expected, Solution.checkIfSubstringMakesNIslands(item1, sub, noOfIslands));
 	}
@@ -114,9 +114,9 @@ public class SolutionTest {
 	@Test
 	public void testCheckIfSubstringMakesNIslandsFaster() {	
 		char[] item1 = "aaaabababbaabaaabababbababaabaababaababaabaababaaa".toCharArray();
-		int noOfIslands = 3;
+		int noOfIslands = 2;
 		boolean expected = true;
-		assertEquals(expected, Solution.checkIfSubstringMakesNIslandsFaster(item1, 0, 2, noOfIslands));
+		assertEquals(expected, Solution.checkIfSubstringMakesNIslandsFaster(item1, 1, 4, noOfIslands));
 	}
 	
 	@Test
