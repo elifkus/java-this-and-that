@@ -40,7 +40,7 @@ public class SuffixTrie {
 				
 				for (int i=0;i<endLeaves.size();i++) {
 					for(int j=i+1; j<endLeaves.size(); j++) {
-						if (Math.abs(endLeaves.get(i).lengthToRoot - endLeaves.get(j).lengthToRoot) < node.lengthToRoot) {
+						if (Math.abs(endLeaves.get(i).lengthToRoot - endLeaves.get(j).lengthToRoot) <= node.lengthToRoot) {
 							numberOfIslands--;
 						}
 					}
@@ -51,13 +51,13 @@ public class SuffixTrie {
 				}
 			}
 			
-			return satisyfingSubstringCount;
+			
 		}
 		//Find path that has n or more end leaves under it, set numberOfIslands equal to leaf count
 		//Find distance of end leaves. 
 		//If closest distance, less than length of sought string decrease leaf count
 		//Count the instances that have n island
-		return 0;
+		return satisyfingSubstringCount;
 	}
 	
 	private List<Node> findEndLeavesUnderNode(Node node) {
