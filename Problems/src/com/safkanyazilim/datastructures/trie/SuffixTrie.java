@@ -2,7 +2,6 @@ package com.safkanyazilim.datastructures.trie;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +10,7 @@ public class SuffixTrie {
 	private Node root;
 	private List<Node> allLetterNodes;
 	private static char END_LETTER = '$';
+	
 	public SuffixTrie() {
 		this.allLetterNodes = new ArrayList<Node>();
 		
@@ -37,7 +37,6 @@ public class SuffixTrie {
 				//Find end leaves
 				List<Node> endLeaves = findEndLeavesUnderNode(node);
 				int numberOfIslands = node.numberOfEndLeafBelow;
-				Iterator<Node> iter = endLeaves.iterator();
 				
 				for (int i=0;i<endLeaves.size();i++) {
 					for(int j=i+1; j<endLeaves.size(); j++) {
@@ -94,11 +93,11 @@ public class SuffixTrie {
 	
 	
 	private class Node {
-		public int lengthToRoot;
-		public int numberOfEndLeafBelow;
-		public boolean endLeaf;
-		public Map<Character,Edge> outgoingEdges;
-		public Edge incomingEdge;
+		private int lengthToRoot;
+		private int numberOfEndLeafBelow;
+		private boolean endLeaf;
+		private Map<Character,Edge> outgoingEdges;
+		private Edge incomingEdge;
 		
 		public Node() {
 			this.outgoingEdges = new HashMap<Character,Edge>();
@@ -146,18 +145,16 @@ public class SuffixTrie {
 			
 			return this.outgoingEdges.get(letter).getEndNode();
 		}
-		public int getNumberOfEndLeavesBelow() {
-			return this.numberOfEndLeafBelow;
-		}
+		
 	}
 	
 	private class Edge {
-		public Node startNode;
-		public Node endNode;
-		public char letter;
+		private Node startNode;
+		private Node endNode;
+		private char letter;
 		
 		public Edge(Node startNode, Node endNode, char letter) {
-			this.letter=letter;
+			this.letter = letter;
 			this.startNode = startNode;
 			this.endNode = endNode;
 		}
