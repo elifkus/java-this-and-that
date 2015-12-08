@@ -42,7 +42,7 @@ public class SolutionTest {
 		
 	}
 
-	//@Test
+	@Test
 	public void testString5() {
 		long start = System.currentTimeMillis();
 
@@ -52,7 +52,6 @@ public class SolutionTest {
 		long end = System.currentTimeMillis();
 
 		System.out.println("Time: " + String.valueOf(end-start));
-
 	}
 
 	@Test
@@ -60,8 +59,7 @@ public class SolutionTest {
 		String item1 = "abaab";
 		int noOfIslands = 2;	
 		int expected = 3;
-		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsFaster(item1, noOfIslands));
-		
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsFaster(item1, noOfIslands));	
 	}
 
 	@Test
@@ -89,7 +87,7 @@ public class SolutionTest {
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsFaster(item1, noOfIslands));
 	}
 
-	//@Test
+	@Test
 	public void testString5Faster() {
 		long start = System.currentTimeMillis();
 
@@ -101,6 +99,14 @@ public class SolutionTest {
 		System.out.println("Time: " + String.valueOf(end-start));
 	}
 	
+	@Test
+	public void testString1WithTrie() {
+		String item1 = "aba";
+		int noOfIslands = 2;	
+		int expected = 1;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithTrie(item1, noOfIslands));
+		
+	}
 
 	@Test
 	public void testCheckIfSubstringMakesNIslands() {	

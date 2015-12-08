@@ -9,6 +9,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.zip.CRC32;
 
+import com.safkanyazilim.datastructures.trie.SuffixTrie;
+
 /**
  * Solution for https://www.hackerrank.com/challenges/letter-islands
  * @author elif
@@ -71,19 +73,27 @@ public static int findNoOfSubstringsThatMakeNIslandsFaster(String str, int n) {
 			for (int index = 0; index < str.length() - lengthToCheck + 1; index++) {
 				Long hash = calculateHash(charArray, index, lengthToCheck);
 				
-				if (!set.contains(hash)) {
-					if (checkIfSubstringMakesNIslandsFaster(charArray, index, lengthToCheck, n)) {
-						satisfyingSubstring++;
-					}
+				if (!set.contains(hash) && checkIfSubstringMakesNIslandsFaster(charArray, index, lengthToCheck, n)) {
+					
+					System.out.print("Round: " + String.valueOf(index));
+					satisfyingSubstring++;
+					System.out.println(" Count of island: " + String.valueOf(satisfyingSubstring));
 					set.add(hash);
 				}
 				
 			}
 			
-			
 		}
 		
 		return satisfyingSubstring;
+	}
+
+	public static long findNoOfSubstringsThatMakeNIslandsWithTrie(String string, int n) {
+		SuffixTrie trie = new SuffixTrie();
+		trie.construct(string);
+		
+		return trie.findSubstringCountThatMakeNNumberOfIslands(n);
+		
 	}
 
 	public static long calculateHash(char[] arr, int startIndex, int length) {
@@ -106,9 +116,10 @@ public static int findNoOfSubstringsThatMakeNIslandsFaster(String str, int n) {
 			if (sub.equals(str.substring(i,i+sub.length()))) {
 
 				if (!inIslandFlag) {
-					//System.out.println(i);
+					System.out.print("Round: " + String.valueOf(i));
 					countOfIsland++;
-					
+					System.out.println(" Count of island: " + String.valueOf(countOfIsland));
+
 					if (countOfIsland > n) {
 						break;
 					}
