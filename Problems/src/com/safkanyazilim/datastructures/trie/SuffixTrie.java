@@ -20,16 +20,20 @@ public class SuffixTrie {
 		
 		this.root = new Node();
 		
-		
+		System.out.println("Length is " + String.valueOf(string.length()));
 		for(int i=0; i<string.length(); i++) {
 			this.createChainForSuffix(string, i);
+			
+			if (i % 10 == 0) {
+				System.out.println("Working on suffix: " + String.valueOf(i));
+			}
 		}
-		root.outgoingEdges.entrySet();
+		System.out.println("Trie constructed");
 	}
 	
-	public int findSubstringCountThatMakeNNumberOfIslands(int n) {
+	public long findSubstringCountThatMakeNNumberOfIslands(int n) {
 		
-		int satisyfingSubstringCount = 0;
+		long satisyfingSubstringCount = 0;
 		
 		for(Node node : this.allLetterNodes) {
 			if (node.numberOfEndLeafBelow >= n) {
@@ -48,6 +52,7 @@ public class SuffixTrie {
 				
 				if (numberOfIslands == n) {
 					satisyfingSubstringCount++;
+					System.out.println("numberOfIslands: " + String.valueOf(satisyfingSubstringCount));
 				}
 			}
 			

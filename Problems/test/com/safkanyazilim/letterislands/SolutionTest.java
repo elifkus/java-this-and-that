@@ -119,6 +119,43 @@ public class SolutionTest {
 	}
 
 	@Test
+	public void testString2WithTrie() {
+		String item1 = "ababa";
+		int noOfIslands = 2;	
+		int expected = 1;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithTrie(item1, noOfIslands));
+		
+	}
+	
+	@Test
+	public void testString3WithTrie() {
+		String item1 = "aaababaababababbabaabaabaaaababaababaabbabaababaaa";
+		int noOfIslands = 1;	
+		int expected = 946;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithTrie(item1, noOfIslands));
+	}
+
+	@Test
+	public void testString4WithTrie() {
+		String item1 = "aaaabababbaabaaabababbababaabaababaababaabaababaaa";
+		int noOfIslands = 3;	
+		int expected = 5;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithTrie(item1, noOfIslands));
+	}
+
+	@Test
+	public void testString5WithTrie() {
+		long start = System.currentTimeMillis();
+
+		int noOfIslands = 1;	
+		long expected = 4997935541l;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithTrie(itemForTestCase8, noOfIslands));
+		long end = System.currentTimeMillis();
+
+		System.out.println("Time: " + String.valueOf(end-start));
+	}
+	
+	@Test
 	public void testCheckIfSubstringMakesNIslands() {	
 		String item1 = "aaaabababbaabaaabababbababaabaababaababaabaababaaa";
 		String sub = "aaab";

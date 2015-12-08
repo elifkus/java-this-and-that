@@ -2,9 +2,7 @@ package com.safkanyazilim.letterislands;
 
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.zip.CRC32;
