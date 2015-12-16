@@ -1,9 +1,7 @@
 package com.safkanyazilim.datastructures.trie;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class SuffixTrie {
@@ -43,6 +41,7 @@ public class SuffixTrie {
 				int numberOfIslands = node.numberOfEndLeafBelow;
 				
 				for (int i=0;i<endLeaves.size();i++) {
+					System.out.println("Number of endleaves: " + String.valueOf(endLeaves.size()));
 					for(int j=i+1; j<endLeaves.size(); j++) {
 						if (Math.abs(endLeaves.get(i).lengthToRoot - endLeaves.get(j).lengthToRoot) <= node.lengthToRoot) {
 							numberOfIslands--;
@@ -68,7 +67,7 @@ public class SuffixTrie {
 	private List<Node> findEndLeavesUnderNode(Node node) {
 		List<Node> endLeaves = new ArrayList<>();
 		
-		for(Edge out :node.outgoingEdges.values()) {
+		for(Edge out :node.outgoingEdges) {
 			if (out.getEndNode().isEndLeaf()) {
 				endLeaves.add(out.getEndNode());
 			} else {
@@ -82,8 +81,9 @@ public class SuffixTrie {
 	
 	private void createChainForSuffix(String string, int start) {
 		Node currentNode = root;
+		
 		for(int i=start;i<string.length();i++) {
-			if (currentNode.containsEdgeWithLetter(string.charAt(i))) {
+			if (currentNode.containsOutgoingEdgeWithLetter(string.charAt(i))) {
 				currentNode = currentNode.getNextNodeWithLetter(string.charAt(i));
 			} else {
 				currentNode = currentNode.addEdgeWithLetterAndReturnEndNode(string.charAt(i));
@@ -91,22 +91,19 @@ public class SuffixTrie {
 			}
 		}
 		
-		currentNode.addEdgeWithLetterAndReturnEndNode(SuffixTrie.END_LETTER);
-		
+		currentNode.addEdgeWithEndLetter();
 	}
-	
 	
 	
 	private class Node {
 		private int lengthToRoot;
 		private int numberOfEndLeafBelow;
 		private boolean endLeaf;
-		private Map<Character,Edge> outgoingEdges;
+		private List<Edge> outgoingEdges;
 		private Edge incomingEdge;
 		
 		public Node() {
-			this.outgoingEdges = new HashMap<Character,Edge>();
-			
+			this.outgoingEdges = new ArrayList<Edge>();
 		}
 			
 		public Node addEdgeWithLetterAndReturnEndNode(char letter) {
@@ -116,39 +113,50 @@ public class SuffixTrie {
 			Edge edge = new Edge(this, endNode, letter);
 			endNode.incomingEdge = edge;
 			
-			this.outgoingEdges.put(letter, edge);
-			
-			
-			
-			if (letter == SuffixTrie.END_LETTER) {
-				Node current = edge.getStartNode();
-				endNode.endLeaf = true;
-				
-				while (current != null) {
-					current.numberOfEndLeafBelow += 1;
-					
-					if (current.incomingEdge != null) {
-						current = current.incomingEdge.getStartNode();
-					} else {
-						current = null;
-					}
-				}
-			}
+			this.outgoingEdges.add(edge);
 			
 			return endNode;
+		}
+		
+		public void addEdgeWithEndLetter() {
+			Node endNode = this.addEdgeWithLetterAndReturnEndNode(END_LETTER);
+			
+			Node current = endNode.incomingEdge.getStartNode();
+			endNode.endLeaf = true;
+			
+			while (current.incomingEdge != null) {
+				current.numberOfEndLeafBelow += 1;
+				current = current.incomingEdge.getStartNode();
+			}
+			
 		}
 		
 		public boolean isEndLeaf() {
 			return this.endLeaf;
 		}
 		
-		public boolean containsEdgeWithLetter(char letter) {
-			return this.outgoingEdges.containsKey(letter);
+		public boolean containsOutgoingEdgeWithLetter(char letter) {
+			
+			Edge edge = findEdgeInOutgoingList(letter);
+			
+			return (edge != null);
+		}
+		
+	
+		private Edge findEdgeInOutgoingList(char letter) {
+			for (Edge edge : this.outgoingEdges) {
+				if (edge.getLetter() == letter) {
+					return edge;
+				}
+			}
+			return null;
 		}
 		
 		public Node getNextNodeWithLetter(char letter) {
 			
-			return this.outgoingEdges.get(letter).getEndNode();
+			Edge edge = findEdgeInOutgoingList(letter);
+			
+			return edge.getEndNode();
 		}
 		
 	}
@@ -177,7 +185,7 @@ public class SuffixTrie {
 		}
 		@Override
 		public int hashCode() {
-			return 3*this.startNode.hashCode() + 5 * (int)this.letter;
+			return 3 * this.startNode.hashCode() + 5 * (int)this.letter;
 		}
 
 		@Override

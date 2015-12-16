@@ -143,7 +143,7 @@ public class SolutionTest {
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithTrie(item1, noOfIslands));
 	}
 
-	@Test
+	//@Test
 	public void testString5WithTrie() {
 		long start = System.currentTimeMillis();
 
