@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.zip.CRC32;
 
+import com.safkanyazilim.datastructures.tree.SuffixTree;
 import com.safkanyazilim.datastructures.trie.SuffixTrie;
 
 /**
@@ -94,6 +95,14 @@ public static int findNoOfSubstringsThatMakeNIslandsFaster(String str, int n) {
 		
 	}
 
+	public static long findNoOfSubstringsThatMakeNIslandsWithSuffixTree(String string, int n) {
+		SuffixTree tree = new SuffixTree();
+		tree.construct(string);
+		
+		return tree.findSubstringCountThatMakeNNumberOfIslands(n);
+		
+	}
+	
 	public static long calculateHash(char[] arr, int startIndex, int length) {
 		
 		ByteBuffer bb = StandardCharsets.US_ASCII.encode(CharBuffer.wrap(arr, startIndex, length));
