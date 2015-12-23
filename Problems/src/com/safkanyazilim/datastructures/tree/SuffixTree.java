@@ -39,7 +39,8 @@ public class SuffixTree {
 						activePoint.node.addOutgoingEdge(i, -1);
 					} else {
 						Edge activeEdge = findActiveEdge(activePoint);
-						activeEdge.splitAt(activePoint.length);
+						Edge newEdge = activeEdge.splitAt(activePoint.length);
+						newEdge.startNode.addOutgoingEdge(i, -1);
 						
 						updateActivePointAfterEdgeSplitAndAddSuffixLink(activePoint, i, first);
 						
@@ -67,7 +68,7 @@ public class SuffixTree {
 		}
 		
 		if (this.root == activePoint.node) {
-			activePoint.length --;
+			activePoint.length--;
 			activePoint.edgeBeginningWith = this.string.charAt(currentIndex - activePoint.length);
 			
 		}

@@ -165,6 +165,25 @@ public class SolutionTest {
 	}
 	
 	@Test
+	public void testString7WithSuffixTree() {
+		String item1 = "abca";
+		int noOfIslands = 1;	
+		int expected = 3;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
+		
+	}
+	
+
+	@Test
+	public void testString8WithSuffixTree() {
+		String item1 = "abcabx";
+		int noOfIslands = 1;	
+		int expected = 3;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
+		
+	}
+	
+	@Test
 	public void testCheckIfSubstringMakesNIslands() {	
 		String item1 = "aaaabababbaabaaabababbababaabaababaababaabaababaaa";
 		String sub = "aaab";
