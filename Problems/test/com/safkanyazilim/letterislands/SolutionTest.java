@@ -159,7 +159,7 @@ public class SolutionTest {
 	public void testString6WithSuffixTree() {
 		String item1 = "abc";
 		int noOfIslands = 1;	
-		int expected = 3;
+		int expected = 6;
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
 		
 	}
@@ -167,17 +167,15 @@ public class SolutionTest {
 	@Test
 	public void testString7WithSuffixTree() {
 		String item1 = "abca";
-		int noOfIslands = 1;	
-		int expected = 3;
+		int noOfIslands = 2;	
+		int expected = 1;
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
-		
 	}
-	
 
 	@Test
 	public void testString8WithSuffixTree() {
 		String item1 = "abcabx";
-		int noOfIslands = 1;	
+		int noOfIslands = 2;	
 		int expected = 3;
 		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
 		

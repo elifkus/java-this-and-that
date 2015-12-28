@@ -15,7 +15,7 @@ public class SuffixTree {
 	}
 	
 	public void construct(String string) {
-		this.string = string; // + END_LETTER;
+		this.string = string + END_LETTER;
 		
 		ActivePoint activePoint = new ActivePoint(this.root, null, 0);
 		
@@ -45,16 +45,28 @@ public class SuffixTree {
 						updateActivePointAfterEdgeSplitAndAddSuffixLink(activePoint, i, first);
 						
 						letterExistOnTree = doesLetterExistInOutgoingEdges(activePoint, i);
-						first = false;
+						
 					}
 
 					remainderOfSuffixesToBeInserted--;
-
+					first = false;
 				}
 			}
-			
-			//Son adimda eger elde kalan stringle baslayan baska string varsa onun sonuna $ isareti konacak
+				
 		}
+		
+		
+		
+		//remove edge $ from root node
+		for (Edge edge : this.root.outgoingEdges) {
+			if (edge.from == this.string.length()-1) {
+				this.root.outgoingEdges.remove(edge);
+				break;
+			}
+		}
+		//replace to -1 with length of string
+		
+		countEndLeavesUnderNodeAndUpdateToIndex(this.root);
 	}
 	
 	private void updateActivePointAfterEdgeSplitAndAddSuffixLink(ActivePoint activePoint, int currentIndex, boolean first) {
@@ -76,7 +88,7 @@ public class SuffixTree {
 		if (!first) {
 			Edge edge = findActiveEdge(activePoint);
 			
-			if (edge!=null) {
+			if (edge != null) {
 				Node endNode = edge.endNode;
 				prevToNode.addSuffixLink(endNode);	
 			}
@@ -115,7 +127,112 @@ public class SuffixTree {
 	}
 	
 	public long findSubstringCountThatMakeNNumberOfIslands(int n) {
-		return -1;
+		
+		if ( n < 1) {
+			return 0l;
+		}
+		
+		List<Node> potentialNodes = new ArrayList<Node>();
+		
+		if (n == 1) {
+			findEndNodes(this.root, potentialNodes);
+		} else {
+			findNodesThatHaveAtLeastNEndLeavesBelow(this.root, potentialNodes, n);
+		}
+		
+		long satisfyingSubstringCount = 0;
+		
+		for(Node node:potentialNodes) {
+			//int numberOfIslands = node.numberOfEndLeavesBelow;
+			
+			//Do sth
+			//if () {
+			//	
+			//}
+			satisfyingSubstringCount += node.incomingEdge.to - node.incomingEdge.from;
+		}
+		
+		
+		
+		return satisfyingSubstringCount;
+	}
+	
+	private void findEndNodes(Node node, List<Node> nodes) {
+		
+		if (node.outgoingEdges.size() < 1) {
+			nodes.add(node);
+		} else {
+			for(Edge edge : node.outgoingEdges) {
+				findEndNodes(edge.endNode, nodes);
+			}
+		}
+		
+	}
+	
+	private void findNodesThatHaveAtLeastNEndLeavesBelow(Node node, List<Node> nodes, int n) {
+		
+		if (node.incomingEdge != null && node.numberOfEndLeavesBelow >= n) {
+			nodes.add(node);
+		} else {
+			for(Edge edge : node.outgoingEdges) {
+				findNodesThatHaveAtLeastNEndLeavesBelow(edge.endNode, nodes, n);
+			}
+		}
+	}
+	
+	/*public long findSubstringCountThatMakeNNumberOfIslands(int n) {
+		
+		long satisyfingSubstringCount = 0;
+		
+		for(Node node : this.allLetterNodes) {
+			if (node.numberOfEndLeafBelow >= n) {
+				//distance from node to root is length of string
+				//Find end leaves
+				List<Node> endLeaves = findEndLeavesUnderNode(node);
+				int numberOfIslands = node.numberOfEndLeafBelow;
+				
+				if (numberOfIslands >= n ) {
+				
+					for (int i=0;i<endLeaves.size();i++) {
+						for(int j=i+1; j<endLeaves.size(); j++) {
+							if (Math.abs(endLeaves.get(i).lengthToRoot - endLeaves.get(j).lengthToRoot) <= node.lengthToRoot) {
+								numberOfIslands--;
+							}
+						}
+					}
+					
+					if (numberOfIslands == n) {
+						satisyfingSubstringCount++;
+					}
+				}
+			}
+			
+			
+		}
+		//Find path that has n or more end leaves under it, set numberOfIslands equal to leaf count
+		//Find distance of end leaves. 
+		//If closest distance, less than length of sought string decrease leaf count
+		//Count the instances that have n island
+		return satisyfingSubstringCount;
+	}
+	*/
+	
+	private int countEndLeavesUnderNodeAndUpdateToIndex(Node node) {
+		int count = 0;
+		for(Edge out : node.outgoingEdges) {
+			if (out.endNode.outgoingEdges.size() < 1) {
+				count++;
+				if (out.to == -1) {
+					out.to = this.string.length()-1;
+				}
+			} else {
+				count += countEndLeavesUnderNodeAndUpdateToIndex(out.endNode);
+			}
+		}
+		
+		node.numberOfEndLeavesBelow = count;
+		
+		return count;
 	}
 	
 	private class ActivePoint {
@@ -136,7 +253,8 @@ public class SuffixTree {
 		private Edge incomingEdge;
 		private List<Edge> outgoingEdges;
 		private SuffixLink suffixLink;
-		
+		private int numberOfEndLeavesBelow;
+
 		public Node() {
 			this.outgoingEdges = new ArrayList<Edge>();
 		}
