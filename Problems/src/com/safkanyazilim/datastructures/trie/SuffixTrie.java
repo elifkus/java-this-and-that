@@ -18,15 +18,9 @@ public class SuffixTrie {
 		
 		this.root = new Node();
 		
-		System.out.println("Length is " + String.valueOf(string.length()));
 		for(int i=0; i<string.length(); i++) {
 			this.createChainForSuffix(string, i);
-			
-			if (i % 10 == 0) {
-				System.out.println("Working on suffix: " + String.valueOf(i));
-			}
 		}
-		System.out.println("Trie constructed");
 	}
 	
 	public long findSubstringCountThatMakeNNumberOfIslands(int n) {
@@ -40,18 +34,19 @@ public class SuffixTrie {
 				List<Node> endLeaves = findEndLeavesUnderNode(node);
 				int numberOfIslands = node.numberOfEndLeafBelow;
 				
-				for (int i=0;i<endLeaves.size();i++) {
-					System.out.println("Number of endleaves: " + String.valueOf(endLeaves.size()));
-					for(int j=i+1; j<endLeaves.size(); j++) {
-						if (Math.abs(endLeaves.get(i).lengthToRoot - endLeaves.get(j).lengthToRoot) <= node.lengthToRoot) {
-							numberOfIslands--;
+				if (numberOfIslands >= n ) {
+				
+					for (int i=0;i<endLeaves.size();i++) {
+						for(int j=i+1; j<endLeaves.size(); j++) {
+							if (Math.abs(endLeaves.get(i).lengthToRoot - endLeaves.get(j).lengthToRoot) <= node.lengthToRoot) {
+								numberOfIslands--;
+							}
 						}
 					}
-				}
-				
-				if (numberOfIslands == n) {
-					satisyfingSubstringCount++;
-					System.out.println("numberOfIslands: " + String.valueOf(satisyfingSubstringCount));
+					
+					if (numberOfIslands == n) {
+						satisyfingSubstringCount++;
+					}
 				}
 			}
 			
