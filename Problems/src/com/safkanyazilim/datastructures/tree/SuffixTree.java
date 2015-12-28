@@ -309,7 +309,6 @@ public class SuffixTree {
 				this.endNode = outGoingNode;
 			}
 			
-			endNode.incomingEdge = this;
 			this.endNode.incomingEdge = this;
 		}
 		
@@ -319,6 +318,7 @@ public class SuffixTree {
 			
 			Node previousEndNode = this.endNode;
 			this.endNode = new Node();
+			this.endNode.incomingEdge = this;
 			//new edge will be added to this node
 			
 			Edge newEdge = new Edge(this.to, previousTo, this.endNode, previousEndNode);
