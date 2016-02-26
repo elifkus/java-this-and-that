@@ -17,9 +17,10 @@ public class Solution {
 	    int currentIndice = 0;
 	    int nextIndice = -1;
 	    int swap = a.get(a.get(currentIndice));
+	   
 	    int nextSwap;
 	    int count = a.size();
-	    
+	   
 	    for (int i=0; i<a.size(); i++) {
 	        if (a.get(i) == i) {
 	            count--;
@@ -27,26 +28,11 @@ public class Solution {
 	    }
 	    
 	    while (count>0) {
-	        //System.out.print("c:" +count + " ");
-
-	        if (currentIndice == swap) {
-	            count--;
-	            System.out.print(" count decreased ");
-	            continue;
-	        }
-            System.out.print("i:" + currentIndice + " ");
-	        
 	        nextSwap = a.get(currentIndice);
 	        nextIndice = findNextIndiceWithResult(nextSwap, a);
-	        System.out.print("n:" + nextSwap + " ");
-	        System.out.print("sb:" + swap + " ");
 	        a.set(currentIndice, swap);
 	        swap = nextSwap;
-            System.out.print("sa:" + swap + " ");
-
-	        
-	        currentIndice = nextIndice;
-	        
+            currentIndice = nextIndice;
 	        count--;
 
 	    } 
@@ -59,10 +45,10 @@ public class Solution {
 	            if (value == a.get(a.get(i))) {
 	                
 	                currentIndice = i;
-	                break;
 	            }
 	    }
 	    
 	    return currentIndice;
 	}
+
 }
