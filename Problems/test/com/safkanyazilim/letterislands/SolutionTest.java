@@ -156,6 +156,52 @@ public class SolutionTest {
 	}
 	
 	@Test
+	public void testString1WithSuffixTree() {
+		String item1 = "abaab";
+		int noOfIslands = 2;	
+		int expected = 3;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
+		
+	}
+
+	@Test
+	public void testString2WithSuffixTree() {
+		String item1 = "ababa";
+		int noOfIslands = 2;	
+		int expected = 1;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
+		
+	}
+	
+	@Test
+	public void testString3WithSuffixTree() {
+		String item1 = "aaababaababababbabaabaabaaaababaababaabbabaababaaa";
+		int noOfIslands = 1;	
+		int expected = 946;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
+	}
+
+	@Test
+	public void testString4WithSuffixTree() {
+		String item1 = "aaaabababbaabaaabababbababaabaababaababaabaababaaa";
+		int noOfIslands = 3;	
+		int expected = 5;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(item1, noOfIslands));
+	}
+
+	//@Test
+	public void testString5WithSuffixTree() {
+		long start = System.currentTimeMillis();
+
+		int noOfIslands = 1;	
+		long expected = 4997935541l;
+		assertEquals(expected, Solution.findNoOfSubstringsThatMakeNIslandsWithSuffixTree(itemForTestCase8, noOfIslands));
+		long end = System.currentTimeMillis();
+
+		System.out.println("Time: " + String.valueOf(end-start));
+	}
+	
+	@Test
 	public void testString6WithSuffixTree() {
 		String item1 = "abc";
 		int noOfIslands = 1;	

@@ -14,6 +14,50 @@ public class SuffixTree {
 		this.root = new Node();
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder(); 
+		sb.append("SuffixTree [root=" + root + ", string=" + string + "]");
+		sb.append("\n");
+		printNode(sb, this.root);
+		return sb.toString();
+	}
+	
+	public String toString(int currentEnd) {
+		StringBuilder sb = new StringBuilder(); 
+		sb.append("SuffixTree [root=" + root + ", string=" + string + "]");
+		sb.append("\n");
+		printNode(sb, this.root, currentEnd, "");
+		return sb.toString();
+	}
+	
+	private void printNode(StringBuilder builder, Node node) {
+		printNode(builder, node, this.string.length()-1, "");
+	}
+
+	private void printNode(StringBuilder builder, Node node, int currentEnd, String spacing) {
+		builder.append("O");
+		boolean first = true;
+		for(Edge edge: node.outgoingEdges) {
+			if (!first) {
+				builder.append(spacing);
+			}
+			builder.append("--");
+			int to = edge.to < 0 ? currentEnd + 1 : edge.to + 1;
+			builder.append(this.string.substring(edge.from, to));
+			builder.append("--");
+			
+			if (edge.endNode != null) {
+				printNode(builder, edge.endNode, currentEnd, "     |");
+			}
+			
+			builder.append("\n ");
+			first = false;
+		}
+	}
+
 	public void construct(String string) {
 		this.string = string + END_LETTER;
 		
@@ -29,7 +73,16 @@ public class SuffixTree {
 				if (remainderOfSuffixesToBeInserted < 2) {
 					activePoint.edgeBeginningWith = this.string.charAt(i);
 				}
-				activePoint.length += 1;
+				
+				Edge activeEdge = findActiveEdge(activePoint);
+				if (activeEdge.to - activeEdge.from > activePoint.length + 1) {
+					activePoint.length += 1;
+				} else {
+					activePoint.node = activeEdge.endNode;
+					activePoint.edgeBeginningWith = null;
+					activePoint.length = 0;
+				}
+				
 			} else {
 				boolean first = true;
 				
@@ -52,7 +105,7 @@ public class SuffixTree {
 					first = false;
 				}
 			}
-				
+			System.out.println(this.toString(i));
 		}
 		
 		
@@ -60,7 +113,7 @@ public class SuffixTree {
 		//remove edge $ from root node
 		for (Edge edge : this.root.outgoingEdges) {
 			if (edge.from == this.string.length()-1) {
-				this.root.outgoingEdges.remove(edge);
+				//this.root.outgoingEdges.remove(edge);
 				break;
 			}
 		}
@@ -99,8 +152,11 @@ public class SuffixTree {
 	
 	private Edge findActiveEdge(ActivePoint point) {
 		for(Edge edge : point.node.outgoingEdges) {
-			if (point.edgeBeginningWith == this.string.charAt(edge.from)) {			
-				return edge;
+			if (point.edgeBeginningWith == this.string.charAt(edge.from)) {
+				if (edge.to - edge.from < point.length) {
+					return edge;
+				}
+				
 			}
 		}
 		
@@ -171,13 +227,16 @@ public class SuffixTree {
 	
 	private void findNodesThatHaveAtLeastNEndLeavesBelow(Node node, List<Node> nodes, int n) {
 		
-		if (node.incomingEdge != null && node.numberOfEndLeavesBelow >= n) {
-			nodes.add(node);
-		} else {
+		if (node.numberOfEndLeavesBelow >= n) {
+			
+			if (node.incomingEdge != null) {
+				nodes.add(node);
+			}
+			
 			for(Edge edge : node.outgoingEdges) {
 				findNodesThatHaveAtLeastNEndLeavesBelow(edge.endNode, nodes, n);
 			}
-		}
+		} 
 	}
 	
 	/*public long findSubstringCountThatMakeNNumberOfIslands(int n) {
@@ -264,11 +323,6 @@ public class SuffixTree {
 			return edge.endNode;
 		}
 		
-		
-		public List<Edge> getEdgeList() {
-			return this.outgoingEdges;
-		}
-		
 		public void addSuffixLink(Node to) {
 			this.suffixLink = new SuffixLink(this, to);
 		}
@@ -314,14 +368,14 @@ public class SuffixTree {
 		
 		public Edge splitAt(int length) {
 			int previousTo = this.to;
-			this.to = this.from + length;
+			this.to = this.from + length - 1;
 			
 			Node previousEndNode = this.endNode;
 			this.endNode = new Node();
 			this.endNode.incomingEdge = this;
 			//new edge will be added to this node
 			
-			Edge newEdge = new Edge(this.to, previousTo, this.endNode, previousEndNode);
+			Edge newEdge = new Edge(this.to+1, previousTo, this.endNode, previousEndNode);
 			
 			return newEdge;
 		}

@@ -98,7 +98,7 @@ public static int findNoOfSubstringsThatMakeNIslandsFaster(String str, int n) {
 	public static long findNoOfSubstringsThatMakeNIslandsWithSuffixTree(String string, int n) {
 		SuffixTree tree = new SuffixTree();
 		tree.construct(string);
-		
+		System.out.println(tree.toString());
 		return tree.findSubstringCountThatMakeNNumberOfIslands(n);
 		
 	}
