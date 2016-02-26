@@ -14,7 +14,11 @@ public class SolutionTest {
 		ArrayList<Integer> input = new ArrayList<Integer>(Arrays.asList(1,0));
 		ArrayList<Integer> expected = new ArrayList<Integer>(Arrays.asList(0,1));
 		
-		Solution.arrange(input);
+		try {
+			Solution.arrange(input);
+		} catch (Exception e) {
+			fail("Test failed");
+		}
 		assertEquals(expected, input);
 	}
 
@@ -23,7 +27,25 @@ public class SolutionTest {
 		ArrayList<Integer> input = new ArrayList<Integer>(Arrays.asList(4,0,2,1,3));
 		ArrayList<Integer> expected = new ArrayList<Integer>(Arrays.asList(3,4,2,0,1));
 		
-		Solution.arrange(input);
+		try {
+			Solution.arrange(input);
+		} catch (Exception e) {
+			fail("Test failed");
+		}
+		assertEquals(expected, input);
+	}
+	
+	@Test
+	public void testArrange3() {
+		ArrayList<Integer> input = new ArrayList<Integer>(Arrays.asList(1, 2, 7, 0, 9, 3, 6, 8, 5, 4));
+		ArrayList<Integer> expected = new ArrayList<Integer>(Arrays.asList(2, 7, 8, 1, 4, 0, 6, 5, 3, 9));
+		
+		try {
+			Solution.arrange(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Test failed\n" + e.getMessage() + "\n");
+		}
 		assertEquals(expected, input);
 	}
 	
@@ -33,7 +55,13 @@ public class SolutionTest {
 		int value=4;
 		int expected = 1;
 		
-		int output = Solution.findNextIndiceWithResult(value, input);
+		int output = -1;
+		try {
+			 output = Solution.findNextIndiceWithResult(value, input);
+			
+		} catch (Exception e) {
+			fail("Test failed");
+		}
 		
 		assertEquals(expected, output);
 	}
@@ -44,8 +72,13 @@ public class SolutionTest {
 		int value= 0;
 		int expected = 3;
 		
-		int output = Solution.findNextIndiceWithResult(value, input);
-		
+		int output = -1;
+		try {
+			 output = Solution.findNextIndiceWithResult(value, input);
+			
+		} catch (Exception e) {
+			fail("Test failed");
+		}		
 		assertEquals(expected, output);
 	}
 
@@ -55,8 +88,13 @@ public class SolutionTest {
 		int value = 2;
 		int expected = 2;
 		
-		int output = Solution.findNextIndiceWithResult(value, input);
-		
+		int output = -1;
+		try {
+			 output = Solution.findNextIndiceWithResult(value, input);
+			
+		} catch (Exception e) {
+			fail("Test failed");
+		}		
 		assertEquals(expected, output);
 	}
 
@@ -66,8 +104,13 @@ public class SolutionTest {
 		int value = 1;
 		int expected = 4;
 		
-		int output = Solution.findNextIndiceWithResult(value, input);
-		
+		int output = -1;
+		try {
+			 output = Solution.findNextIndiceWithResult(value, input);
+			
+		} catch (Exception e) {
+			fail("Test failed");
+		}		
 		assertEquals(expected, output);
 	}
 
@@ -77,8 +120,13 @@ public class SolutionTest {
 		int value = 3;
 		int expected = 0;
 		
-		int output = Solution.findNextIndiceWithResult(value, input);
-		
+		int output = -1;
+		try {
+			 output = Solution.findNextIndiceWithResult(value, input);
+			
+		} catch (Exception e) {
+			fail("Test failed");
+		}		
 		assertEquals(expected, output);
 	}
 
