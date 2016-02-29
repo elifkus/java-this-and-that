@@ -30,13 +30,21 @@ public class Solution {
 	        }
 	    }
 	    
+	    for (int i=0; i<a.size(); i++) {
+	        
+	        if ((a.get(i) != i) && (i == a.get(a.get(i)))) {
+	        	a.set(a.get(i), a.get(i));
+	        	a.set(i, i);
+	        	count = count - 2;
+	        }
+	    }
+	    
 	    while (count>0) {
 	        nextSwap = a.get(currentIndice);
 	        
 	        //check if value is in extraslot
 	        if (currentIndice == extraSlotValue) {
 	        	nextIndice = extraSlotIndice;
-	        	 
 	        } else {
 	        	nextIndice = findNextIndiceWithIntermediateResult(currentIndice, a);
 	        }
@@ -49,16 +57,6 @@ public class Solution {
 	    } 
 	}
 	
-	public static int findNextIndiceWithIntermediateResult(int intermediate, ArrayList<Integer> a, int firstSwapIndice, int firstSwap ) {
-		int result;
-		if (intermediate == firstSwap) {
-			result = firstSwapIndice;
-		} else {
-			result = findNextIndiceWithIntermediateResult(intermediate, a);
-		}
-		
-		return result;
-	}
 	public static int findNextIndiceWithIntermediateResult(int intermediate, ArrayList<Integer> a) {
 	    int currentIndice = -1;
 	    
@@ -72,17 +70,5 @@ public class Solution {
 	    return currentIndice;
 	}
 	
-	public static int findNextIndiceWithResult(int value, ArrayList<Integer> a) {
-	    int currentIndice = -1;
-	    
-	    for(int i=0; i<a.size(); i++) {
-	            if (value == a.get(a.get(i))) {
-	                
-	                currentIndice = i;
-	            }
-	    }
-	    
-	    return currentIndice;
-	}
 
 }
