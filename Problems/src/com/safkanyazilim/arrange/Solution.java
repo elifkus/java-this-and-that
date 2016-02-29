@@ -29,13 +29,27 @@ public class Solution {
 	    
 	    while (count>0) {
 	        nextSwap = a.get(currentIndice);
-	        nextIndice = findNextIndiceWithResult(nextSwap, a);
+	        nextIndice = findNextIndiceWithIntermediateResult(currentIndice, a);
 	        a.set(currentIndice, swap);
 	        swap = nextSwap;
             currentIndice = nextIndice;
 	        count--;
 
 	    } 
+	}
+	
+
+	public static int findNextIndiceWithIntermediateResult(int intermediate, ArrayList<Integer> a) {
+	    int currentIndice = -1;
+	    
+	    for(int i=0; i<a.size(); i++) {
+	            if (intermediate == a.get(i)) {
+	                
+	                currentIndice = i;
+	            }
+	    }
+	    
+	    return currentIndice;
 	}
 	
 	public static int findNextIndiceWithResult(int value, ArrayList<Integer> a) {
