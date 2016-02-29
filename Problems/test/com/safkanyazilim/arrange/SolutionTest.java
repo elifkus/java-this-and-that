@@ -17,7 +17,7 @@ public class SolutionTest {
 		try {
 			Solution.arrange(input);
 		} catch (Exception e) {
-			fail("Test failed");
+			fail("Test failed" + e.getMessage());
 		}
 		assertEquals(expected, input);
 	}

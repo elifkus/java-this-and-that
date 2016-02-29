@@ -14,48 +14,85 @@ public class Solution {
 	        return;
 	    }
 	    
-	    int currentIndice = 0;
-	    int nextIndice = -1;
-	    int swap = a.get(a.get(currentIndice));
-	   
-	    int extraSlotIndice = a.get(currentIndice);
-	    int extraSlotValue = swap;
 	    
-	    int nextSwap;
 	    int count = a.size();
 	   
 	    for (int i=0; i<a.size(); i++) {
 	        if (a.get(i) == i) {
-	            count--;
+	            a.set(i, (-1 * a.get(i)));
+	        	count--;
 	        }
 	    }
 	    
 	    for (int i=0; i<a.size(); i++) {
 	        
-	        if ((a.get(i) != i) && (i == a.get(a.get(i)))) {
-	        	a.set(a.get(i), a.get(i));
-	        	a.set(i, i);
+	        if (((-1 * a.get(i)) != i) && (i == a.get(a.get(i)))) {
+	        	a.set(a.get(i), (-1 *a.get(i)));
+	        	a.set(i, (-1 * i));
 	        	count = count - 2;
 	        }
 	    }
 	    
+	    int currentIndice;
+	    
+	    while ((currentIndice = findUnarrangedIndex(a)) > -1) {
+	    	rearrangeStartingFromIndice(a, count, currentIndice);
+	    }
+	     
+	    for (int i=0; i<a.size(); i++) {
+		        
+	    	a.set(i, (-1* a.get(i)));
+		}
+	}
+
+	private static int findUnarrangedIndex(ArrayList<Integer> a) {
+		int indice = -1;
+		
+		for (int i=0; i<a.size(); i++) {
+	        
+	    	if (a.get(i) > 0) {
+	    		indice = i;
+	    		break;
+	    	}
+		}
+		
+		return indice;
+	}
+	
+	private static void rearrangeStartingFromIndice(ArrayList<Integer> a,
+			int count, int currentIndice ) {
+		
+	    int nextIndice;
+	    int swap = a.get(a.get(currentIndice));
+	   
+	    int firstIndice = a.get(currentIndice);
+	    int firstSwap = swap;
+	    
+	    int nextSwap;
+	    
+	    
 	    while (count>0) {
+	    	System.out.println("Current indice is "+ currentIndice);
 	        nextSwap = a.get(currentIndice);
 	        
 	        //check if value is in extraslot
-	        if (currentIndice == extraSlotValue) {
-	        	nextIndice = extraSlotIndice;
+	        if (currentIndice == firstSwap) {
+	        	nextIndice = firstIndice;
 	        } else {
 	        	nextIndice = findNextIndiceWithIntermediateResult(currentIndice, a);
 	        }
 	        
-	        a.set(currentIndice, swap);
+	        a.set(currentIndice,(-1)*swap);
+	        if (nextIndice < 0) {
+	        	break;
+	        }
 	        swap = nextSwap;
             currentIndice = nextIndice;
 	        count--;
 
-	    } 
+	    }
 	}
+	
 	
 	public static int findNextIndiceWithIntermediateResult(int intermediate, ArrayList<Integer> a) {
 	    int currentIndice = -1;
@@ -66,6 +103,7 @@ public class Solution {
 	                break;
 	            }
 	    }
+	    
 	    
 	    return currentIndice;
 	}
