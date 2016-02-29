@@ -130,4 +130,19 @@ public class SolutionTest {
 		assertEquals(expected, output);
 	}
 
+	@Test
+	public void testfindCurrentIndiceWithResult5() {
+		ArrayList<Integer> input = new ArrayList<Integer>(Arrays.asList(1, 2, 7, 0, 9, 3, 6, 8, 5, 4));
+		int value = 1;
+		int expected = 3;
+		
+		int output = -1;
+		try {
+			 output = Solution.findNextIndiceWithResult(value, input);
+			
+		} catch (Exception e) {
+			fail("Test failed");
+		}		
+		assertEquals(expected, output);
+	}
 }
