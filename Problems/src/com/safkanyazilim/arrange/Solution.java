@@ -18,6 +18,9 @@ public class Solution {
 	    int nextIndice = -1;
 	    int swap = a.get(a.get(currentIndice));
 	   
+	    int extraSlotIndice = a.get(currentIndice);
+	    int extraSlotValue = swap;
+	    
 	    int nextSwap;
 	    int count = a.size();
 	   
@@ -29,7 +32,15 @@ public class Solution {
 	    
 	    while (count>0) {
 	        nextSwap = a.get(currentIndice);
-	        nextIndice = findNextIndiceWithIntermediateResult(currentIndice, a);
+	        
+	        //check if value is in extraslot
+	        if (currentIndice == extraSlotValue) {
+	        	nextIndice = extraSlotIndice;
+	        	 
+	        } else {
+	        	nextIndice = findNextIndiceWithIntermediateResult(currentIndice, a);
+	        }
+	        
 	        a.set(currentIndice, swap);
 	        swap = nextSwap;
             currentIndice = nextIndice;
@@ -38,14 +49,23 @@ public class Solution {
 	    } 
 	}
 	
-
+	public static int findNextIndiceWithIntermediateResult(int intermediate, ArrayList<Integer> a, int firstSwapIndice, int firstSwap ) {
+		int result;
+		if (intermediate == firstSwap) {
+			result = firstSwapIndice;
+		} else {
+			result = findNextIndiceWithIntermediateResult(intermediate, a);
+		}
+		
+		return result;
+	}
 	public static int findNextIndiceWithIntermediateResult(int intermediate, ArrayList<Integer> a) {
 	    int currentIndice = -1;
 	    
 	    for(int i=0; i<a.size(); i++) {
 	            if (intermediate == a.get(i)) {
-	                
 	                currentIndice = i;
+	                break;
 	            }
 	    }
 	    
