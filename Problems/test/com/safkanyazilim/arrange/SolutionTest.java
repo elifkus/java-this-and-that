@@ -49,6 +49,19 @@ public class SolutionTest {
 		assertEquals(expected, input);
 	}
 	
+	@Test
+	public void testArrange4() {
+		ArrayList<Integer> input = new ArrayList<Integer>(Arrays.asList(6, 4, 3, 2, 5, 1, 7, 0));
+		ArrayList<Integer> expected = new ArrayList<Integer>(Arrays.asList(7, 5, 2, 3, 1, 4, 0, 6));
+		
+		try {
+			Solution.arrange(input);
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail("Test failed\n" + e.getMessage() + "\n");
+		}
+		assertEquals(expected, input);
+	}
 	
 	
 
