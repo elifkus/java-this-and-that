@@ -39,6 +39,18 @@ public class Solution {
 		return fibonacci;
 	}
 
+	public static int calculateFibonacciAnalytically(int n) {
+		int fibonacci;
+		if (n == 0 || n == 1) {
+			fibonacci = n;
+		} else if (n == 2){
+			fibonacci = 1;
+		} else {
+			fibonacci = (int)((1d/Math.sqrt(5d)) * Math.pow(((1+ Math.sqrt(5d))/2),n) - (1/Math.sqrt(5))* Math.pow(((1- Math.sqrt(5d))/2),n));
+		}
+		
+		return fibonacci;
+	}
 	
 	
 }
