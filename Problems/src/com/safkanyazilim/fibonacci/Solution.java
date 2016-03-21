@@ -20,6 +20,24 @@ public class Solution {
 		
 	}
 	
+	public static int calculateFibonacciWithLoop(int n) {
+		int fibonacci;
+		if (n == 0 || n == 1) {
+			fibonacci = n;
+		} else {
+			int previous = 0;
+			fibonacci = 1;
+			int temp;
+			
+			for (int i=2; i<=n; i++) {
+				temp = fibonacci;
+				fibonacci +=  previous;
+				previous = temp;
+			}
+		}
+		
+		return fibonacci;
+	}
 
 	
 	
