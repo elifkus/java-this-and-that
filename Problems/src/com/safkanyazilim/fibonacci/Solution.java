@@ -1,6 +1,5 @@
 package com.safkanyazilim.fibonacci;
 
-import java.util.Scanner;
 
 /**
  * Solution for <insert problem url>
