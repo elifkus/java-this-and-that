@@ -54,7 +54,6 @@ public class Solution {
 	}
 	
 	public static String convertResultListToString(List<Long> resultList) {
-	    System.out.print("Result list size is : "+ resultList.size() + ".");
 	    long overflow = 0;
 	    for(int i=0; i<resultList.size(); i++) {
 	        if (resultList.get(i) > 99999999) {
@@ -67,8 +66,7 @@ public class Solution {
 	            }
 	        } 
 	    }
-	    System.out.print("Result list size is : "+ resultList.size() + ".");
-
+	    
 	    StringBuffer resultBuff= new StringBuffer(resultList.size()*8);
 	    boolean isAlwaysZero = true;
 
