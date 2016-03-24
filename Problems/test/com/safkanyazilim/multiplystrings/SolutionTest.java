@@ -61,7 +61,7 @@ public class SolutionTest {
 		String item1 = "1197982102373370";
 		String item2 = "4406534291250836";
 		String expected = "5278949214413024428861596637320";
-		//				   52789499463782	 
+		//				          172564695375239796637320	 
 		assertEquals(expected, Solution.multiply(item1, item2));
 	}
 	
@@ -75,7 +75,7 @@ public class SolutionTest {
 	@Test
 	public void testParseStringToNumberList1() {
 		String item = "1197982102373370";
-		List<Long> expected = new ArrayList<Long>(Arrays.asList(11979821l, 02373370l));
+		List<Long> expected = new ArrayList<Long>(Arrays.asList(2373370l, 11979821l));
 		List<Long> actual = Solution.parseStringToNumberList(item, 16);
 		
 		assertNotNull(actual);
@@ -87,7 +87,7 @@ public class SolutionTest {
 	@Test
 	public void testParseStringToNumberList2() {
 		String item = "4406534291250836";
-		List<Long> expected = new ArrayList<Long>(Arrays.asList(44065342l, 91250836l));
+		List<Long> expected = new ArrayList<Long>(Arrays.asList(91250836l,44065342l));
 		List<Long> actual = Solution.parseStringToNumberList(item, 16);
 		
 		assertNotNull(actual);

@@ -108,15 +108,15 @@ public class Solution {
 	public static List<Long> parseStringToNumberList(String stringNumber, int length) {
 	    long number;
 	    List<Long> numberList = new ArrayList<Long>();
-	    int i = 8;
-	    for (; i<length; i=i+8) {
+	    int i = length;
+	    for (; i>=8; i=i-8) {
 	        number = Long.parseLong(stringNumber.substring(i-8,i));
 	        
 	        numberList.add(number);
 	    }
 	    
-	    if (((length) % 8)!=0) {
-	        number = Long.parseLong(stringNumber.substring(i-8, length));
+	    if (i>0) {
+	        number = Long.parseLong(stringNumber.substring(0, i));
 	        
 	        numberList.add(number);
 	    }
