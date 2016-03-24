@@ -69,11 +69,20 @@ public class Solution {
 	    
 	    StringBuffer resultBuff= new StringBuffer(resultList.size()*8);
 	    boolean isAlwaysZero = true;
-
+	    boolean last = true;
 	    for(int i=resultList.size()-1; i>=0; i--) {
             if (isAlwaysZero && resultList.get(i) != 0) {
                 isAlwaysZero = false;
             }
+            if (!last) {
+            	if (resultList.get(i) < 10000000) {
+            		padNumberWithZeros(resultList, resultBuff, i);
+            	}
+            	
+            } else {
+            	last = true;
+            }
+            
 	        resultBuff.append(resultList.get(i));     
 	    }
 	    
@@ -83,6 +92,16 @@ public class Solution {
 	    }
 	    
 	    return resultBuff.toString();
+	}
+
+	private static void padNumberWithZeros(List<Long> resultList,
+			StringBuffer resultBuff, int i) {
+		int count = resultList.get(i).toString().length();
+		
+		while (count<9) {
+			 resultBuff.append("0");
+			 count++;
+		}
 	}
 	
 	public static List<Long> parseStringToNumberList(String stringNumber, int length) {
