@@ -55,6 +55,7 @@ public class Solution {
 	
 	public static String convertResultListToString(List<Long> resultList) {
 	    long overflow = 0;
+	    
 	    for(int i=0; i<resultList.size(); i++) {
 	        if (resultList.get(i) > 99999999) {
 	            overflow =  resultList.get(i) / 100000000l;
