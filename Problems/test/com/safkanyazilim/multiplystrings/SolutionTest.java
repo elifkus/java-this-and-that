@@ -3,6 +3,9 @@ package com.safkanyazilim.multiplystrings;
 import static org.junit.Assert.*;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -68,5 +71,27 @@ public class SolutionTest {
 		BigInteger result = number1.multiply(number2);
 		return result.toString();
 	}
+	
+	@Test
+	public void testParseStringToNumberList1() {
+		String item = "1197982102373370";
+		List<Long> expected = new ArrayList<Long>(Arrays.asList(11979821l, 02373370l));
+		List<Long> actual = Solution.parseStringToNumberList(item, 16);
+		
+		assertNotNull(actual);
+		assertEquals(2,actual.size());
+		assertEquals(expected.get(0), actual.get(0));
+		assertEquals(expected.get(1), actual.get(1));
+	}
 
+	@Test
+	public void testParseStringToNumberList2() {
+		String item = "4406534291250836";
+		List<Long> expected = new ArrayList<Long>(Arrays.asList(44065342l, 91250836l));
+		List<Long> actual = Solution.parseStringToNumberList(item, 16);
+		
+		assertNotNull(actual);
+		assertEquals(2,actual.size());
+		assertEquals(expected.get(0), actual.get(0));
+		assertEquals(expected.get(1), actual.get(1));	}
 }
