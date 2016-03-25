@@ -85,7 +85,7 @@ public class Solution {
             	}
             	
             } else {
-            	last = true;
+            	last = false;
             }
             
 	        resultBuff.append(resultList.get(i));     
@@ -103,7 +103,7 @@ public class Solution {
 			StringBuffer resultBuff, int i) {
 		int count = resultList.get(i).toString().length();
 		
-		while (count<9) {
+		while (count < 8) {
 			 resultBuff.append("0");
 			 count++;
 		}
