@@ -28,7 +28,7 @@ public class Solution {
 	        
 	        for(int i=0; i<aList.size(); i++) {
 	            for(int j=0; j<bList.size(); j++) {
-	                index = Math.max(i,j);
+	                index = i+j;
 	                multiplied = aList.get(i) * bList.get(j);
 	                
 	                if (resultListSize <= index) {
@@ -60,11 +60,15 @@ public class Solution {
 	        if (resultList.get(i) > 99999999) {
 	            overflow =  resultList.get(i) / 100000000l;
 	            resultList.set(i, resultList.get(i) % 100000000l);
-	            if (i+1<resultList.size()) {
-	               resultList.set(i+1, resultList.get(i+1) + overflow);
-	            } else {
-	                resultList.add(overflow);
+	            if (i+1>=resultList.size())  {
+	            	int count = resultList.size();
+                    while(count<=i+1) {
+                        resultList.add(0l);
+                        count++;
+                    }
+ 	               
 	            }
+	            resultList.set(i+1, resultList.get(i+1) + overflow);
 	        } 
 	    }
 	    
