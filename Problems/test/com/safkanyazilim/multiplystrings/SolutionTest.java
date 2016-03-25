@@ -102,5 +102,90 @@ public class SolutionTest {
 		assertNotNull(actual);
 		assertEquals(2,actual.size());
 		assertEquals(expected.get(0), actual.get(0));
-		assertEquals(expected.get(1), actual.get(1));	}
+		assertEquals(expected.get(1), actual.get(1));	
+	}
+	
+	@Test
+	public void testSpeedForMultiply() {
+		String[] items1 = {
+				  "5",
+				  "94563234",
+				  "1111172934729344",
+				  "8923434534534538472934729384923423498",
+				  "8888888824323888888888888888888888",
+				  "87832434",
+				  "132323",
+				  "0",
+				  "928347293487298347923847892347923847923487293472938478923492",
+				  "982349234923498234729342934"};
+		
+		String[] items2 = {
+				  "12",
+				  "99834234",
+				  "9879872934729344",
+				  "89234923472938472934729384923423498",
+				  "88888888888888888888888888888888888",
+				  "87832434",
+				  "0",
+				  "34234898273942837492834792347923847923749234234234",
+				  "928347293487298347923847892347923847923487293472938478923492",
+				  "982349234923498234729342934"};
+		
+		long start = System.currentTimeMillis();
+		
+		for(int j=0; j<100000; j++) {
+			for (int i = 0; i<10; i=i+2) {
+				Solution.multiply(items1[i], items2[i]);
+			}
+		}
+		
+		long end = System.currentTimeMillis();
+		
+		long elapsedTime = end-start;
+		
+		System.out.println("Total time elapsed 1: "+ String.valueOf(elapsedTime));
+		
+	}
+	
+	@Test
+	public void testSpeedForMultiply2() {
+		String[] items1 = {
+				  "5",
+				  "94563234",
+				  "1111172934729344",
+				  "8923434534534538472934729384923423498",
+				  "8888888824323888888888888888888888",
+				  "87832434",
+				  "132323",
+				  "0",
+				  "928347293487298347923847892347923847923487293472938478923492",
+				  "982349234923498234729342934"};
+		
+		String[] items2 = {
+				  "12",
+				  "99834234",
+				  "9879872934729344",
+				  "89234923472938472934729384923423498",
+				  "88888888888888888888888888888888888",
+				  "87832434",
+				  "0",
+				  "34234898273942837492834792347923847923749234234234",
+				  "928347293487298347923847892347923847923487293472938478923492",
+				  "982349234923498234729342934"};
+		
+		long start = System.currentTimeMillis();
+		
+		for(int j=0; j<100000; j++) {
+			for (int i = 0; i<10; i=i+2) {
+				Solution.multiply2(items1[i], items2[i]);
+			}
+		}
+		
+		long end = System.currentTimeMillis();
+		
+		long elapsedTime = end-start;
+		
+		System.out.println("Total time elapsed 2: "+ String.valueOf(elapsedTime));
+		
+	}
 }
