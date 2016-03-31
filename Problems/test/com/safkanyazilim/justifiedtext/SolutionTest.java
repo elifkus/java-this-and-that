@@ -39,6 +39,17 @@ public class SolutionTest {
 		assertEquals(expected, actual);
 	}
 	
+	@Test
+	public void testFullJustify4() {
+		ArrayList<String> input1 = new ArrayList<String>(Arrays.asList("What", "must", "be", "shall", "be."));
+		int input2 = 12;
+		ArrayList<String> expected = new ArrayList<String>(Arrays.asList("What must be", "shall be.   "));
+		ArrayList<String> actual = Solution.fullJustify(input1, input2);
+		
+		assertEquals(expected, actual);
+	}
+	
+	
 	
 
 }

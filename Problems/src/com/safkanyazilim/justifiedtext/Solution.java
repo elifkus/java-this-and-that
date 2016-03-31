@@ -42,9 +42,16 @@ public class Solution {
 	public static String justifyWordsIntoLine(ArrayList<String> a, int b, int startIndex, int endIndex, int currentLineLength) {
 		StringBuffer buffer = new StringBuffer();
 		
-		if (startIndex==endIndex) {
+		if (startIndex==endIndex || endIndex == (a.size()-1)) {
+			
+			while(startIndex<endIndex) {
+				buffer.append(a.get(startIndex));
+				buffer.append(" ");
+				startIndex++;
+			}
+			
 			buffer.append(a.get(startIndex));
-			b = b - a.get(startIndex).length();
+			b = b - currentLineLength;
 			
 			while (b > 0) {
 				buffer.append(" ");
