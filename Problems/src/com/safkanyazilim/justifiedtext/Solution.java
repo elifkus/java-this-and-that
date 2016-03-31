@@ -18,14 +18,12 @@ public class Solution {
 		ArrayList<String> justifiedLines = new ArrayList<String>();
 		
 		while (currentWordIndex<a.size()) {
-			System.out.println("Outer loop");
-			System.out.println("Current: " + currentWordIndex);
+			
 			while (currentWordIndex < a.size() && b >= a.get(currentWordIndex).length() + currentLineLength) {
 				lineEndWordIndex = currentWordIndex;
 				currentLineLength += a.get(currentWordIndex).length();
 				currentLineLength += 1;
 				currentWordIndex++;
-				System.out.println("First Inner loop");
 			}
 			currentLineLength--;
 			
