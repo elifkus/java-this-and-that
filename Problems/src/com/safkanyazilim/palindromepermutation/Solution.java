@@ -68,15 +68,14 @@ public class Solution {
 			int offset = (int)c - base;
 			
 			if (offset > 0) {
-				int mask =  offset << 1 ; 
+				int mask =   1 << offset ; 
 				if ((counter & mask) == 0) {
 					counter = mask | counter;
 				} else {
 					counter = ~mask & counter;
 				}	
 			}
-		} 
-		
+		} 	
 		
 		return ((counter == 0) || (counter & (counter - 1)) == 0);
 	}
