@@ -10,7 +10,7 @@ public class Solution {
 		
 		char[] textCharArray = text.toCharArray();
 		for (char c : textCharArray) {
-			if (c != ' ') {
+			if (!Character.isWhitespace(c)) {
 				if (set.contains(c)) {
 					set.remove(c);
 				} else {

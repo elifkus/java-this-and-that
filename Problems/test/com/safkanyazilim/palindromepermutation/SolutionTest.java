@@ -42,7 +42,7 @@ public class SolutionTest {
 		assertEquals(expected, Solution.isPermutationOfAPalindrome1(item1));
 	}
 
-	//@Test
+	@Test
 	public void testSpeedForIsPermuationOfAPalindrome1() {
 		String[] items = {"aabbabab",
 						  "aba",
@@ -118,7 +118,7 @@ public class SolutionTest {
 		assertEquals(expected, Solution.isPermutationOfAPalindrome2(item1));
 	}
 
-	//@Test
+	@Test
 	public void testSpeedForIsPermuationOfAPalindrome2() {
 		String[] items = {"aabbabab",
 						  "aba",
