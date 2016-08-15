@@ -57,4 +57,28 @@ public class Solution {
 		
 		return true;
 	}
+    
+	public static boolean isPermutationOfAPalindrome3(String text) {
+		int counter = 0;
+		int base = (int)'a' - 1;
+		int upperLimit = (int)'z' + 1;
+		char[] textCharArray = text.toCharArray();
+		
+		for (char c : textCharArray) {
+			int offset = (int)c;
+			
+			if (offset > base && offset < upperLimit) {
+				offset -= base;
+				int mask =  offset << 1 ; 
+				if ((counter & mask) == 0) {
+					counter = mask | counter;
+				} else {
+					counter = ~mask & counter;
+				}	
+			}
+		} 
+		
+		
+		return ((counter == 0) || (counter & (counter - 1)) == 0);
+	}
 }
