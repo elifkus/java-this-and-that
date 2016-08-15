@@ -61,14 +61,13 @@ public class Solution {
 	public static boolean isPermutationOfAPalindrome3(String text) {
 		int counter = 0;
 		int base = (int)'a' - 1;
-		int upperLimit = (int)'z' + 1;
+
 		char[] textCharArray = text.toCharArray();
 		
 		for (char c : textCharArray) {
-			int offset = (int)c;
+			int offset = (int)c - base;
 			
-			if (offset > base && offset < upperLimit) {
-				offset -= base;
+			if (offset > 0) {
 				int mask =  offset << 1 ; 
 				if ((counter & mask) == 0) {
 					counter = mask | counter;
