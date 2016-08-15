@@ -68,7 +68,7 @@ public class Solution {
 			int offset = (int)c - base;
 			
 			if (offset > 0) {
-				int mask =   1 << offset ; 
+				int mask = 1 << offset ; 
 				if ((counter & mask) == 0) {
 					counter = mask | counter;
 				} else {
