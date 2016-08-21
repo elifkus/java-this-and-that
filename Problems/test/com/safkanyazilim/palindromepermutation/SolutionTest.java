@@ -67,16 +67,18 @@ public class SolutionTest {
 		
 		long start = System.currentTimeMillis();
 		
-		for(int j=0; j<10000; j++) {
+		boolean preventCompilerOptimization = false;
+		
+		for(int j=0; j<100000; j++) {
 			for (int i = 0; i<20; i++) {
-				boolean isPermutation = Solution.isPermutationOfAPalindrome1(items[i]);
-				System.out.print(items[i] + ":" + isPermutation + "|");
+				preventCompilerOptimization ^= Solution.isPermutationOfAPalindrome1(items[i]);
 			}
 		}
-		System.out.println("");
 		long end = System.currentTimeMillis();
 		
 		long elapsedTime = end-start;
+		
+		System.out.println(preventCompilerOptimization);
 		
 		System.out.println("Total time elapsed 1: "+ String.valueOf(elapsedTime));
 		
@@ -143,18 +145,21 @@ public class SolutionTest {
 		
 		long start = System.currentTimeMillis();
 
-		for(int j=0; j<10000; j++) {
-			for (int i = 0; i<20; i++) {
-				boolean isPermutation = Solution.isPermutationOfAPalindrome2(items[i]);
-				System.out.print(items[i] + ":" + isPermutation + "|");
+		boolean preventCompilerOptimization = false;
+		
+		for (int i = 0; i<20; i++) {
+			for(int j=0; j<10000000; j++) {
+				/*shit ^= */ Solution.isPermutationOfAPalindrome2(items[i]);
 			}
 		}
-		System.out.println("");
+
 		long end = System.currentTimeMillis();
 		
 		long elapsedTime = end-start;
 		
-		System.out.println("Total time elapsed 1: "+ String.valueOf(elapsedTime));
+		System.out.println(preventCompilerOptimization);
+		
+		System.out.println("Total time elapsed 2: "+ String.valueOf(elapsedTime));
 		
 	}
 	
@@ -219,18 +224,23 @@ public class SolutionTest {
 		
 		long start = System.currentTimeMillis();
 
-		for(int j=0; j<10000; j++) {
+		boolean preventCompilerOptimization = false;
+		
+		for(int j=0; j<100000; j++) {
 			for (int i = 0; i<20; i++) {
-				boolean isPermutation = Solution.isPermutationOfAPalindrome3(items[i]);
-				System.out.print(items[i] + ":" + isPermutation + "|");
+				preventCompilerOptimization ^= Solution.isPermutationOfAPalindrome3(items[i]);
 			}
 		}
-		System.out.println("");
+
 		long end = System.currentTimeMillis();
 		
 		long elapsedTime = end-start;
 		
-		System.out.println("Total time elapsed 1: "+ String.valueOf(elapsedTime));
+		System.out.println(preventCompilerOptimization);
+		
+		System.out.println("Total time elapsed 3: "+ String.valueOf(elapsedTime));
+		
+		
 		
 	}
 
