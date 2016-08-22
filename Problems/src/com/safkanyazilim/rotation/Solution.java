@@ -2,11 +2,11 @@ package com.safkanyazilim.rotation;
 
 public class Solution {
 
-	public static boolean isRotation(String first, String second) {
+	public static boolean isRotation1(String first, String second) {
 		
 		int length = first.length();
 		
-		if (length != second.length()) {
+		if (length == 0 || length != second.length()) {
 			return false;
 		}
 		
@@ -28,6 +28,18 @@ public class Solution {
 		}
 		
 		return true;
+	}
+	
+	public static boolean isRotation2(String first, String second) { 
+		int length = first.length();
+		
+		if (length > 0 && length == second.length()) {
+			String concatenated = first + first;
+			
+			return concatenated.indexOf(second) > -1;
+		}
+		
+		return false;
 	}
 
 }
