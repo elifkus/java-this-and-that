@@ -36,10 +36,11 @@ public class Solution {
 		if (length > 0 && length == second.length()) {
 			String concatenated = first + first;
 			
-			return concatenated.indexOf(second) > -1;
+			return concatenated.contains(second);
 		}
 		
 		return false;
 	}
+	
 
 }

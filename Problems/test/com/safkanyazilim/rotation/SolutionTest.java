@@ -80,6 +80,7 @@ public class SolutionTest {
 			
 		assertEquals(expected, Solution.isRotation2(item1, item2));
 	}
+	
 	@Test
 	public void testSpeedForIsRotation2() {
 		String[] items = {"aabbabab",
