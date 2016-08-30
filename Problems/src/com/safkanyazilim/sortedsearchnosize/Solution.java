@@ -14,7 +14,9 @@ public class Solution {
 			if (listy.elementAt(end) >= number) {
 				return binarySearch(listy, start, end, number);
 			} else if (listy.elementAt(end) < 0) {
-				end = start + (end - start)/2;
+				while (listy.elementAt(end) < 0) {
+					end = start + (end - start)/2;
+				}
 			} else {
 				start = end;
 				end = end*2;
