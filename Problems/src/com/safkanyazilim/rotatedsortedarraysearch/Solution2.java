@@ -53,15 +53,15 @@ public class Solution2 {
 	
 	public static int binarySearch(int[] array, int start, int end, int number) {
 		
-		while (start < end) {
+		while (start <= end) {
 			int pivot = (end + start) / 2;
 			
 			if (number == array[pivot]) {
 				return pivot;
 			} else if (array[pivot] < array[start]) {
-				start = pivot;
+				start = pivot + 1;
 			} else {
-				end = pivot;
+				end = pivot - 1;
 			}
 		}
 		
