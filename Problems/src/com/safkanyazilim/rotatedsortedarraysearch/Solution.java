@@ -11,13 +11,8 @@ import java.util.Scanner;
  */
 public class Solution {
 	public static int search(final List<Integer> A, int B) {
-	    int mid;
 	    int start, end;
-	    int count;
-	    int num;
 	    int n = A.size();
-	    
-	    count = n;
 	    
 	    int pivot = getMinElementIndex(A);
 	    
@@ -44,23 +39,21 @@ public class Solution {
 	        mid = start + (end - start) / 2;
 	        num = A.get(mid);
 	        
-	        if (B == num)
+	        if (B == num) {
 	            return mid;
+	        }
 	        
-	        if (B < num)
+	        if (B < num) {
 	            end = mid - 1;
-	            
-	        else
+	        } else {
 	            start = mid + 1;
-	            
-	        count /= 2;
+	        }
 	        
+	        count /= 2;
 	    }
         
         return -1;
-	    
 	}
-	
 	
 	public static int getMinElementIndex(final List<Integer> A) {
 	    int first, last, start, end;
@@ -101,46 +94,17 @@ public class Solution {
 	
 	public int searchAlternativeImpl(final List<Integer> a, int b) {
 	    int start = findStartIndex(a);
-	    //System.out.print("start:" + start);
+
 	    int end = a.size()-1;
-	    //System.out.print(" start:" + start);
-        //System.out.print(" end:" + end);
 	    int result = binarySearch(a, start, end, b);
 	    
 	    if (result<0 && start>0) {
-	        //System.out.print(" In second binary search ");
 	        end = start-1;
 	        start = 0;
-	        //System.out.print(" start:" + start);
-            //System.out.print(" end:" + end);
 	        result = binarySearchAlternativeImpl(a, start,end,b);
 	    }
 	    
 	    return result;
-	    /*while(a.get(start) <= a.get(end)) {
-	        if (end >= start) {
-	            mid = (start + (end-start)/2) % a.size();    
-	        } else {
-	            mid = (start + (((a.size()-1) + end-start)/2)) % a.size() ;
-	        }
-	        
-	        //System.out.print(" start:" + start);
-            //System.out.print(" end:" + end);
-	        //System.out.print(" mid:" + mid);
-
-	        if(a.get(mid) == b) {
-	           //System.out.print(" equal ");
-
-	            return mid;
-	        } else if (a.get(mid)>b) {
-	            end = (mid == 0) ? a.size()-1 : (mid-1);
-	            //System.out.print(" greater ");
-	        }  else {
-	            start = (mid+1) % a.size();
-	            //System.out.print(" smaller ");
-	        }
-	    }*/
-	    
 	    
 	}
 	
@@ -149,25 +113,17 @@ public class Solution {
 	    while(start < a.size() && end > -1 && a.get(start) <= a.get(end)) {
 	        mid = (start + (end-start)/2);    
 	        
-	        
-	        //System.out.print(" start:" + start);
-            //System.out.print(" end:" + end);
-	        //System.out.print(" mid:" + mid);
-
 	        if(a.get(mid) == b) {
-	           //System.out.print(" equal ");
-
 	            return mid;
 	        } else if (a.get(mid)>b) {
 	            end =(mid-1);
-	            //System.out.print(" greater ");
 	        }  else {
 	            start = (mid+1);
-	            //System.out.print(" smaller ");
 	        }
 	    }
 	    return -1;
 	}
+
 	public int findStartIndex(final List<Integer> a) {
 	    for(int i=0; i<a.size()-1;i++) {
 	        if (a.get(i+1)<a.get(i) ) {
