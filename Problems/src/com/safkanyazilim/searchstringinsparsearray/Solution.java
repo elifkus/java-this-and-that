@@ -4,17 +4,21 @@ public class Solution {
 	public static int findStringInSparseArray(String[] array, String str) {
 		
 		int start = 0;
-		int end = str.length();
+		int end = array.length-1;
 		
 		while (start <= end) {
 			int pivot = (start + end) / 2;
 			int direction = 1;
 			int offset = 1; 
 			
-			while (array[pivot].isEmpty() && (pivot >= start && pivot <= end)) {
+			while (array[pivot].isEmpty()) {
 				pivot = pivot + offset * direction;
 				direction = direction * -1;
-				offset = Math.abs(offset)+1;
+				offset = Math.abs(offset) + 1;
+				
+				if (pivot < start || pivot > end) {
+					return -1;
+				} 
 			}
 			
 			if (str.equals(array[pivot])) {
