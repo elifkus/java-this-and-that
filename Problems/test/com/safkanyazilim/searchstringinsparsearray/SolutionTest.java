@@ -7,7 +7,7 @@ import org.junit.Test;
 public class SolutionTest {
 
 	@Test
-	public void testFindCommonLetter() {
+	public void testFindStringInSparseArray() {
 		String[] array = {"at", "", "", "", "ball", "", "", "car", "", "", "dad", "", ""};
 		String str = "ball";
 		int expected = 4;
