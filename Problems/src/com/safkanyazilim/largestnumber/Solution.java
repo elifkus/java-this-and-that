@@ -12,7 +12,7 @@ import java.util.List;
 
 public class Solution {
     
-	public static String largestNumber(final List<Integer> a) {
+	public static String largestNumber1(final List<Integer> a) {
 	    List<String> numbers = new ArrayList<String>(a.size());
 	    int sum = 0;
 	    
@@ -42,25 +42,51 @@ public class Solution {
 	}
 
 
-private static boolean compareNumberStringsWithSameBeginning(String a, String b) {
-    int index = 0;
-    int size = a.length() < b.length() ? a.length() : b.length();
-    char aChar = '0';
-    char bChar = '0';
-    
-    while (index < size && a.charAt(index) == b.charAt(index)) {
-        aChar = a.charAt(index);
-        bChar = b.charAt(index);
-        index++;
-    }
-    
-    if (a.length() > b.length()) {
-        aChar = a.charAt(index);
-    } else {
-        bChar = b.charAt(index);
-    }
-    
-    return aChar > bChar;
-}
+	private static boolean compareNumberStringsWithSameBeginning(String a, String b) {
+	    int index = 0;
+	    int size = a.length() < b.length() ? a.length() : b.length();
+	    char aChar = '0';
+	    char bChar = '0';
+	    
+	    while (index < size && a.charAt(index) == b.charAt(index)) {
+	        aChar = a.charAt(index);
+	        bChar = b.charAt(index);
+	        index++;
+	    }
+	    
+	    if (a.length() > b.length()) {
+	        aChar = a.charAt(index);
+	    } else {
+	        bChar = b.charAt(index);
+	    }
+	    
+	    return aChar > bChar;
+	}
+	
+	public static String largestNumber2(final List<Integer> a) {
+	    int sum = 0;
+	    
+	    for (Integer n : a) {
+	        sum += n;
+	    }
+	    
+	    if (sum < 1) {
+	        return "0";
+	    }
+	    
+
+	    ArrayList<NumberWithString> list = new ArrayList<>(a.size());
+	    
+	    for (Integer i : a) {
+	    	list.add(new NumberWithString(i));
+	    }
+	    
+	    Collections.sort(list); 
+	    
+	    
+
+	    return String.join("", list);
+	    
+	}
 
 }
