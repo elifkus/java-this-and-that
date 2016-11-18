@@ -112,5 +112,36 @@ public class SolutionTest {
 		assertEquals(expected, Solution.largestNumber2(items));
 	}
 
+	@Test
+	public void testNumberWithStringComparator1() {
+		NumberWithString item1 = new NumberWithString(1);
+		NumberWithString item2 = new NumberWithString(2);
+		
+		assertTrue(item1.compareTo(item2) == -1 * item2.compareTo(item1));
+	}
+	
+	@Test
+	public void testNumberWithStringComparator2() {
+		NumberWithString item1 = new NumberWithString(1);
+		NumberWithString item2 = new NumberWithString(1);
+		
+		assertEquals(0,item1.compareTo(item2));
+	}
+	
+	@Test
+	public void testNumberWithStringComparator3() {
+		NumberWithString item1 = new NumberWithString(88);
+		NumberWithString item2 = new NumberWithString(889);
+		
+		assertTrue(item1.compareTo(item2) == -1 * item2.compareTo(item1));
+	}
+
+	@Test
+	public void testNumberWithStringComparator4() {
+		NumberWithString item1 = new NumberWithString(33);
+		NumberWithString item2 = new NumberWithString(332);
+		
+		assertTrue(item1.compareTo(item2) == -1 * item2.compareTo(item1));
+	}
 
 }
