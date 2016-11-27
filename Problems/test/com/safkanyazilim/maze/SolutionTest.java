@@ -7,7 +7,7 @@ import org.junit.Test;
 public class SolutionTest {
 
 	@Test
-	public void testFindCommonLetter() {
+	public void testFindLengthOfRoute() {
 		int maze[][] = {{0,0,0},{0,0,0},{0,0,0}};
 		int rows = 3;
 		int column = 3;
