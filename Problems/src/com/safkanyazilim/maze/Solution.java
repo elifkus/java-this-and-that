@@ -19,7 +19,7 @@ public class Solution {
 	
 	private static int findNextStep(int[][] maze, boolean[][] visited, int x, int y, int stepCount, int rows,  int columns, int exitRow, int exitColumn) {
 		visited[x][y] = true;
-		//System.out.println("X,Y is "+x+","+y);
+
 		if (checkIfExitRowAndColumn(x, y,  exitRow, exitColumn)) {
 			return stepCount;
 		} else {
