@@ -53,7 +53,7 @@ public class SolutionTest {
 
 	@Test
 	public void testSpeedForFindCommonLetter() {
-		String[] items = {"aabbabab",
+		String[] items = {"aabbaaabab",
 						  "aba",
 						  "sdasdfasdf",
 						  "yhohksdf",
@@ -74,11 +74,12 @@ public class SolutionTest {
 						  "fknafkna",
 						  "kitaplinin"};
 		
+		
 		long start = System.currentTimeMillis();
 		
 		for(int j=0; j<1000000; j++) {
 			for (int i = 0; i<10; i=i+2) {
-				//Solution.findCommonLetter(items[i], items[i+1]);
+				Solution.decodePolyCarp(items[i]);
 			}
 		}
 		
