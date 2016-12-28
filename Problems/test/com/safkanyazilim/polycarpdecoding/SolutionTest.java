@@ -32,6 +32,24 @@ public class SolutionTest {
 		String actual = Solution.decodePolyCarp(input);
 		assertEquals(expected, actual);
 	}
+	
+	@Test
+	public void testDecodePolyCar4() {
+		String input = "rahmaakn";
+		String expected = "kahraman";
+		
+		String actual = Solution.decodePolyCarp(input);
+		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testDecodePolyCar5() {
+		String input = "daernaikz";
+		String expected = "karadeniz";
+		
+		String actual = Solution.decodePolyCarp(input);
+		assertEquals(expected, actual);
+	}
 
 	@Test
 	public void testSpeedForFindCommonLetter() {

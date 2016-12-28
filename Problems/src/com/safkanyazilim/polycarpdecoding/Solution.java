@@ -52,6 +52,7 @@ public class Solution {
 			} else {
 				diff += (i+1) & 1;
 			}
+			
 			diff *=  signMultiplier;
 			
 		}
