@@ -57,9 +57,31 @@ public class Solution {
 			
 		}
 		
-		System.out.println("");
+		//System.out.println("");
 		return new String(decodedArray);
 	}
+	
+	
+	public static String decodePolyCarp2(String s) {
+		 for (int i = s.length() - 1; i >= 0; i--){
+			  //System.out.println(s.substring(i, s.length()));
+		      s = s.substring(0, i) + makeFirstToMedian(s.substring(i, s.length()));
+		      //System.out.println(s);
+		  }
+		 return s;
+	}
+
+	private static String makeFirstToMedian(String chars) {
+	    int median = (chars.length() - 1) / 2;
+	    StringBuilder b = new StringBuilder(chars);
+	
+	    char c = chars.charAt(0);
+	
+	    b.deleteCharAt(0);
+	    b.insert(median, c);
+	
+	    return b.toString();
+  }
 	
 	
 
