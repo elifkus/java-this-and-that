@@ -7,12 +7,30 @@ import org.junit.Test;
 public class SolutionTest {
 
 	@Test
-	public void testFindCommonLetter() {
-		String item1 = "aabbabab";
-		String item2 = "xysdfa";
-		boolean expected = true;
+	public void testDecodePolyCar1() {
+		String input = "logva";
+		String expected = "volga";
 		
-		//assertEquals(expected, Solution.findCommonLetter(item1, item2));
+		String actual = Solution.decodePolyCarp(input);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testDecodePolyCar2() {
+		String input = "no";
+		String expected = "no";
+		
+		String actual = Solution.decodePolyCarp(input);
+		assertEquals(expected, actual);
+	}
+
+	@Test
+	public void testDecodePolyCar3() {
+		String input = "abba";
+		String expected = "baba";
+		
+		String actual = Solution.decodePolyCarp(input);
+		assertEquals(expected, actual);
 	}
 
 	@Test
