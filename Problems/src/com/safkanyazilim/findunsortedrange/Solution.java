@@ -72,5 +72,39 @@ public class Solution {
 		
 		return 0;
 	}
+	
+	public static int[] findUnsortedSubarrayIndicesFaster(int[] unsortedArray) {
+		int min = Integer.MAX_VALUE;
+		int max = Integer.MIN_VALUE;
+		int startIndex = -1;
+		int endIndex = -1;
+		
+		for (int i=0; i<unsortedArray.length; i++) {
+			if (unsortedArray[i] >= max) {
+				max = unsortedArray[i];
+			} else {
+				endIndex = i; 
+			}
+		}
+		
+		for (int i=unsortedArray.length-1; i>=0; i--) {
+			if (unsortedArray[i] <= min) {
+				min = unsortedArray[i];
+			} else {
+				startIndex = i; 
+			}
+		}
+		
+		int[] result;
+		if (startIndex<0) {
+			result = new int[0];
+		} else {
+			result = new int[2];
+			result[0] = startIndex;
+			result[1] = endIndex;
+		}
+		
+		return result;
+	}
 
 }

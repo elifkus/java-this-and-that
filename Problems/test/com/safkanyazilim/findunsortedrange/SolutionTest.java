@@ -60,6 +60,59 @@ public class SolutionTest {
 		assertArrayEquals(expectedOutputArray, actualOutputArray);
 	}
 	
+	@Test
+	public void testFindUnsortedSubarrayIndicesFaster1() {
+		int[] inputArray = {1, 2, 4, 7, 10, 11, 7, 12, 6, 7, 16, 18, 19};
+		int[] expectedOutputArray = {3, 9};
+		
+		int[] actualOutputArray = Solution.findUnsortedSubarrayIndicesFaster(inputArray);
+		assertArrayEquals(expectedOutputArray, actualOutputArray);
+	}
+	
+	@Test
+	public void testFindUnsortedSubarrayIndicesFaster2() {
+		int[] inputArray = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+		int[] expectedOutputArray = {0, 9};
+		
+		int[] actualOutputArray = Solution.findUnsortedSubarrayIndicesFaster(inputArray);
+		assertArrayEquals(expectedOutputArray, actualOutputArray);
+	}
+	
+	@Test
+	public void testFindUnsortedSubarrayIndicesFaster3() {
+		int[] inputArray = {};
+		int[] expectedOutputArray = {};
+		
+		int[] actualOutputArray = Solution.findUnsortedSubarrayIndicesFaster(inputArray);
+		assertArrayEquals(expectedOutputArray, actualOutputArray);
+	}
+
+	@Test
+	public void testFindUnsortedSubarrayIndicesFaster4() {
+		int[] inputArray = {4, 4, 4, 4};
+		int[] expectedOutputArray = {};
+		
+		int[] actualOutputArray = Solution.findUnsortedSubarrayIndicesFaster(inputArray);
+		assertArrayEquals(expectedOutputArray, actualOutputArray);
+	}
+	
+	@Test
+	public void testFindUnsortedSubarrayIndicesFaster5() {
+		int[] inputArray = {5, 2, 4, 7, 10, 11, 12, 16, 18, 19};
+		int[] expectedOutputArray = {0, 2};
+		
+		int[] actualOutputArray = Solution.findUnsortedSubarrayIndicesFaster(inputArray);
+		assertArrayEquals(expectedOutputArray, actualOutputArray);
+	}
+	
+	@Test
+	public void testFindUnsortedSubarrayIndicesFaster6() {
+		int[] inputArray = {2, 4, 7, 10, 11, 7, 16, 18, 19, 5};
+		int[] expectedOutputArray = {2, 9};
+		
+		int[] actualOutputArray = Solution.findUnsortedSubarrayIndicesFaster(inputArray);
+		assertArrayEquals(expectedOutputArray, actualOutputArray);
+	}
 	//@Test
 	public void testSpeedForFindCommonLetter() {
 		String[] items = {"aabbabab",
