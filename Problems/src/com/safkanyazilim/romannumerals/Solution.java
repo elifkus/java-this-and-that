@@ -10,6 +10,7 @@ public class Solution {
 		String[] numerals = {"M", "D", "C", "L", "X", "V", "I"};
 		
 		StringBuilder romanNumber = new StringBuilder();
+		
 		int index = 0;
 		while (number > 0) {
 			int count = number / numbers[index];
